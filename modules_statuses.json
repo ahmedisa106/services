@@ -1,0 +1,7 @@
+{
+    "Admin": true,
+    "AdminModule": true,
+    "CommonModule": true,
+    "FrontModule": true,
+    "ConfigModule": true
+}
