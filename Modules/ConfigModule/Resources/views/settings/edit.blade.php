@@ -20,6 +20,9 @@
     </div>
     <br>
 
+
+
+
     <section id="validation">
         <div class="row">
             <div class="col-12">
@@ -86,7 +89,8 @@
                                                     وصف الموقع :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <textarea name="description" id="" cols="180" rows="10">{{settings()->description}}</textarea>
+                                                <textarea name="description" id="ckeditor" cols="30" rows="15" class="ckeditor">{{settings()->description}}</textarea>
+
                                             </div>
                                         </div>
 
@@ -163,7 +167,7 @@
                                                 @else
                                                     <img src="{{asset('images/logo.png')}}" style="width: 150px; height: 150px" id="logo"/>
                                                 @endif
-                                                {{--End If--}}
+
 
                                             </div>
 
@@ -182,7 +186,7 @@
                                                 @else
                                                     <img src="{{asset('images/logo.png')}}" style="width: 150px; height: 150px" id="icon"/>
                                                 @endif
-                                                {{--End If--}}
+
                                             </div>
 
 
@@ -200,6 +204,7 @@
     </section>
 @endsection
 @push('js')
+    <script src="{{aurl('app-assets/vendors/js/editors/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
     <script src="{{aurl('app-assets/vendors/js/extensions/jquery.steps.min.js')}}" type="text/javascript"></script>
     <script src="{{aurl('app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js')}}" type="text/javascript"></script>
     <script src="{{aurl('app-assets/vendors/js/pickers/daterange/daterangepicker.js')}}" type="text/javascript"></script>
@@ -210,6 +215,8 @@
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="{{aurl('app-assets/js/scripts/forms/wizard-steps.js')}}" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
+    <script src="{{aurl('app-assets/js/scripts/editors/editor-ckeditor.js')}}" type="text/javascript"></script>
+
 
     <script>
         $(function () {
@@ -276,7 +283,8 @@
                                 response.success, 'success',
                             );
                             $('#dynamic').addClass('d-none');
-                        }, 500)
+                            window.location.href = '';
+                        }, 700)
 
                     },
                     404: function (xhr) {
@@ -293,6 +301,21 @@
                             }, 500)
 
                         });
+                    },
+                    422: function (xhr) {
+
+                        $.each(xhr.responseJSON.errors, function (key, value) {
+
+
+                            setTimeout(function () {
+                                $.notify(
+                                    value,
+                                );
+                                $('#dynamic').addClass('d-none');
+                            }, 500)
+
+                        });
+
                     }
                 }
 
@@ -307,3 +330,4 @@
 
 
 @endpush
+

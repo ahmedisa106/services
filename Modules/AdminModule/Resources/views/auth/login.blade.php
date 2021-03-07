@@ -70,7 +70,7 @@
                         <div class="card border-grey border-lighten-3 m-0">
                             <div class="card-header border-0">
                                 <div class="card-title text-center">
-                                    <img style="width: 300px; height: 150px;" src="{{asset('images/logo/'.settings()->logo)}}" alt="branding logo">
+                                    <img style="width: 150px; height: 150px;" src="{{asset('images/logo/'.settings()->logo)}}" alt="branding logo">
                                 </div>
                                 <p class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
                                     <span>{{settings()->name}}</span>
