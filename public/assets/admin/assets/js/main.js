@@ -9,11 +9,18 @@ $(document).on('click', '#check_all', function () {
 
 })
 
+
 $(document).on('click', '#delete_all', function () {
     var item_checked = $('input[class="item_checkbox"]:checkbox').filter(':checked').length;
     if (item_checked > 0) {
 
+        $('#jello').modal().show();
+
     } else {
+
+        $('#jello_no_data').modal().show();
+
 
     }
 })
+

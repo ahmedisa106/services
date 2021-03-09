@@ -6,7 +6,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\CommonModule\Helper\upload;
-use Modules\StoresModule\Entities\Category;
+use Modules\StoresModule\Helper\CategoryRepo;
+use Modules\StoresModule\Http\Requests\Category;
 use Modules\StoresModule\Http\Requests\UpdateCategory;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -18,6 +19,13 @@ class CategoriesController extends Controller
      */
     use upload;
 
+    private $category;
+
+    public function __construct(CategoryRepo $category)
+    {
+        $this->category = $category;
+    }
+
     public function index()
     {
         $title = 'الأقسام';
@@ -27,7 +35,7 @@ class CategoriesController extends Controller
     public function dataTable()
     {
 
-        $categories = Category::all();
+        $categories = $this->category->getALl();
         return DataTables::of($categories)
             ->addColumn('check', function () {
                 return '<input type="checkbox" class="item_checkbox" name="item[]" id="input-15">';
@@ -44,24 +52,15 @@ class CategoriesController extends Controller
                 }
             })
             ->addColumn('operations', function ($row) {
-                $edit = '';
-                $delete = '
 
-                ';
-                return '
-          <div class="dropdown">
-            <button class="btn  dropdown-toggle round " id="dropdownBreadcrumbButton"
-            type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="la la-gear"></i></button>
-            <div class="dropdown-menu" aria-labelledby="dropdownBreadcrumbButton">
-              <a class="dropdown-item text-center btn btn-outline-warning   " href="' . route('categories.edit', $row->id) . '" ><i class="la la-edit"></i>تعديل</a>
-              <form class=" delete_row text-center" action=' . route('categories.destroy', $row->id) . ' method="post">
-                                ' . csrf_field() . method_field('delete') . '
-                                 <button onclick="return confirm(\'Are You Sure !!\')" type="submit" class="btn btn-outline-danger dropdown-item form-control"><i class="la la-trash"></i>حذف</button>
-                        </form>
-            </div>
-          </div>
-        ';
 
+                $edit = ' <a class=" text-center btn-sm btn btn-outline-warning float-left" href="' . route('categories.edit', $row->id) . '" ><i class="la la-edit"></i></a>';
+                $delete = '  <form  class=" text-center deleteForm " action=' . route('categories.destroy', $row->id) . ' method="post">
+                 ' . csrf_field() . method_field('delete') . '
+                 <input type="hidden" class="model_id" name="id" value="' . $row->id . '">
+                <button    type="submit" class="btn btn-sm btn-outline-danger deleteBtn float-left ml-1 "><i class="la la-trash"></i></button>
+              </form>';
+                return $edit . ' ' . $delete;
             })
             ->addColumn('photo', function ($row) {
 
@@ -85,10 +84,9 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        $categories = Category::Parents()->pluck('name', 'id');
-
-
-        return view('storesmodule::categories.create', compact('categories'));
+        $title = 'إضافه قسم جديد';
+        $categories = $this->category->getParentCategories();
+        return view('storesmodule::categories.create', compact('categories', 'title'));
     }
 
     /**
@@ -96,26 +94,9 @@ class CategoriesController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(\Modules\StoresModule\Http\Requests\Category $request)
+    public function store(Category $request)
     {
-        $data = $request->except('_token');
-        if ($request->parent_id == 0) {
-
-            $data['parent_id'] = null;
-
-        }
-        if ($request->hasFile('photo')) {
-            $name = $this->upload($request->photo, 'categories');
-            $data['photo'] = $name;
-        }
-        if ($request->hasFile('cover')) {
-            $name = $this->upload($request->cover, 'categories');
-            $data['cover'] = $name;
-        }
-
-
-        Category::create($data);
-
+        $this->category->create($request);
         return response()->json(['success' => 'تم حفط البيانات بنجاح'], 200);
     }
 
@@ -136,9 +117,10 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::Parents()->pluck('name', 'id');
-        $cat = Category::findOrFail($id);
-        return view('storesmodule::categories.edit', compact('cat', 'categories'));
+        $title = 'تعديل القسم';
+        $categories = $this->category->getParentCategories();
+        $cat = $this->category->find($id);
+        return view('storesmodule::categories.edit', compact('cat', 'categories', 'title'));
     }
 
     /**
@@ -149,31 +131,7 @@ class CategoriesController extends Controller
      */
     public function update(UpdateCategory $request, $id)
     {
-        $cat = Category::findOrFail($id);
-
-
-        $data = $request->except('_token', '_method');
-
-
-        if ($request->parent_id == 0) {
-
-            $data['parent_id'] = null;
-
-        }
-        if ($request->hasFile('photo')) {
-            \Illuminate\Support\Facades\File::delete(public_path('images/categories/' . $cat->photo));
-            $name = $this->upload($request->photo, 'categories');
-            $data['photo'] = $name;
-        }
-        if ($request->hasFile('cover')) {
-            \Illuminate\Support\Facades\File::delete(public_path('images/categories/' . $cat->cover));
-            $name = $this->upload($request->cover, 'categories');
-            $data['cover'] = $name;
-        }
-
-
-        $cat->update($data);
-
+        $this->category->update($request, $id);
         return response()->json(['success' => 'تم حفط البيانات بنجاح'], 200);
     }
 
@@ -182,8 +140,9 @@ class CategoriesController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $this->category->delete($request);
+        return response()->json(['success' => 'تم حذف البيانات بنجاح'], 200);
     }
 }

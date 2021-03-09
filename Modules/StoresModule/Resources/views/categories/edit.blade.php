@@ -7,6 +7,24 @@
 @endpush
 
 @section('content')
+    <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
+            <h3 class="content-header-title mb-0 d-inline-block">{{settings()->name}}</h3>
+            <div class="row breadcrumbs-top d-inline-block">
+                <div class="breadcrumb-wrapper col-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{url('/admin-panel/categories')}}">الاقسام</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#">{{$cat->name}}</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#">تعديل</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <div class="">
         <div id="dynamic" class="progress-bar d-none progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
             <span id="current-progress"></span>
@@ -18,7 +36,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Validation Example</h4>
+                        <h4 class="card-title">{{$cat->name}}</h4>
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
                         <div class="heading-elements">
                             <ul class="list-inline mb-0">

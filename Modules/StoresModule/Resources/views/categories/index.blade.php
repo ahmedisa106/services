@@ -7,6 +7,9 @@
 
 @endpush
 @section('content')
+
+
+
     <section id="file-export">
         <div class="row">
             <div class="col-12">
@@ -48,7 +51,8 @@
                                         <label for="check_all">حذف الكل</label>
                                         <input type="checkbox" id="check_all">
 
-                                        <button class="btn btn-danger" id="delete_all"><i class="la la-trash"></i></button>
+                                        <button class="btn btn-outline-danger   " id="delete_all"><i class="la la-trash"></i></button>
+
 
                                     </th>
                                     <th>الإسم</th>
@@ -68,6 +72,49 @@
         </div>
     </section>
     <!-- File export table -->
+
+    <!-- Modal -->
+    <div class="modal  animated jello text-left" id="jello" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel45" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel45">حذف الكل</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-center">هل تريد حذف الجميع</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">لا</button>
+                    <button type="button" class="btn btn-outline-primary">نعم</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal    animated jello text-left" id="jello_no_data" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel45" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel45">حذف الكل</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-center"> من فضلك قم بإختيار بعض العناصر أولا !</h5>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 @endsection
 
 @push('js')
@@ -109,6 +156,50 @@
             });
 
         });
+    </script>
+
+    <script>
+        $(document).on('click', '.deleteBtn', function (e) {
+            e.preventDefault();
+
+            form = $(this).parent().parent().find('.deleteForm');
+            id = form.find('.model_id').val();
+            url = form.attr('action');
+
+
+            $confirm = confirm('هل تريد حذف القسم !');
+            if ($confirm) {
+
+                $.ajax({
+                    'type': 'delete',
+                    'url': url,
+                    data: {
+                        'id': id,
+                        '_token': '{{csrf_token()}}',
+
+                    },
+                    beforeSend: function () {
+
+                    },
+                    'statusCode': {
+
+                        200: function (response) {
+                            toastr.success(response.success, '', {positionClass: 'toast-bottom-left'});
+                            $('#categories_table').DataTable().ajax.reload();
+
+
+                        },
+                        404: function (xhr) {
+                            $.each(xhr.responseJSON.errors, function (key, value) {
+                                $('#validation-errors').append('<div class="alert alert-danger">' + value + '</div');
+                            });
+                        }
+                    }
+
+
+                });
+            }
+        })
     </script>
 
 

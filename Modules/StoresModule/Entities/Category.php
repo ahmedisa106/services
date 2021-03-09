@@ -43,7 +43,7 @@ class Category extends Model
 
     }//end function
 
-    public function scopeParents(Builder $builder)
+    public function scopeGetParents(Builder $builder)
     {
         return $builder->where('parent_id', null);
 

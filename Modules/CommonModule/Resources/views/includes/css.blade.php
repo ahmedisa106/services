@@ -34,6 +34,7 @@
 <link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/css-rtl/plugins/extensions/toastr.css">
 
 <link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/vendors/css/extensions/jquery.toolbar.css">
+<link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/css-rtl/plugins/animate/animate.css">
 
 
 <!-- END Custom CSS-->

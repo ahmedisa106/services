@@ -24,6 +24,8 @@
 <script src="{{aurl('')}}/app-assets/vendors/js/extensions/jquery.toolbar.min.js" type="text/javascript"></script>
 
 <script src="{{aurl('')}}/app-assets/js/scripts/extensions/toolbar.js" type="text/javascript"></script>
+<script src="{{aurl('')}}/app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
+
 
 <script src="{{aurl('assets/js/main.js')}}"></script>
 
