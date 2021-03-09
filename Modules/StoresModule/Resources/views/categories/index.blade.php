@@ -35,36 +35,42 @@
                             <div class="pull-left">
                                 <h1 class="card-title">
                                     <a href="{{route('categories.create')}}" class="btn btn-success"><i class="la la-plus"> </i>إضافه جديد</a>
+                                    <a id="delete_all" href="javascript:event" class="btn btn-danger"><i class="la la-trash"> </i>حذف الكل</a>
                                 </h1>
+
                             </div>
+                            <form id="form_data" action="{{route('categories.deleteAll')}}" method="post">
 
-                            <table id="categories_table" class="table table-striped table-bordered file-export text-center">
-
-
-                                <thead>
-
-                                <tr>
-
-                                    <th>
+                                @csrf
+                                <table id="categories_table" class="table table-striped table-bordered file-export text-center">
 
 
-                                        <label for="check_all">حذف الكل</label>
-                                        <input type="checkbox" id="check_all">
+                                    <thead>
 
-                                        <button class="btn btn-outline-danger   " id="delete_all"><i class="la la-trash"></i></button>
+                                    <tr>
 
-
-                                    </th>
-                                    <th>الإسم</th>
-                                    <th>الصوره</th>
-                                    <th>القسم الرئيسي</th>
-                                    <th>العمليات</th>
-
-                                </tr>
-                                </thead>
+                                        <th>
 
 
-                            </table>
+                                            <label for="check_all">حذف الكل</label>
+                                            <input type="checkbox" id="check_all">
+
+                                            {{--                                            <button class="btn btn-outline-danger" id="delete_all"><i class="la la-trash"></i></button>--}}
+
+
+                                        </th>
+                                        <th>الإسم</th>
+                                        <th>الصوره</th>
+                                        <th>القسم الرئيسي</th>
+                                        <th>العمليات</th>
+
+                                    </tr>
+                                    </thead>
+
+
+                                </table>
+
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -74,23 +80,23 @@
     <!-- File export table -->
 
     <!-- Modal -->
-    <div class="modal  animated jello text-left" id="jello" tabindex="-1" role="dialog"
+    <div class="modal hidden  animated jello text-left" id="jello" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel45" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel45">حذف الكل</h4>
+                    <h4 class="modal-title" id="myModalLabel45">تأكيد الحذف</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h5 class="text-center">هل تريد حذف الجميع</h5>
+                    <h5 class="text-center">هل تريد الحذف !</h5>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">لا</button>
-                    <button type="button" class="btn btn-outline-primary">نعم</button>
+                    <button type="button" onclick="delete_form()" class="btn btn-outline-primary">نعم</button>
                 </div>
             </div>
         </div>
@@ -100,12 +106,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel45">حذف الكل</h4>
+                    <h4 class="modal-title" id="myModalLabel45">تأكيد الحذف</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body alert alert-danger">
                     <h5 class="text-center"> من فضلك قم بإختيار بعض العناصر أولا !</h5>
 
                 </div>

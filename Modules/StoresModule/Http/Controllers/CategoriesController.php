@@ -37,8 +37,8 @@ class CategoriesController extends Controller
 
         $categories = $this->category->getALl();
         return DataTables::of($categories)
-            ->addColumn('check', function () {
-                return '<input type="checkbox" class="item_checkbox" name="item[]" id="input-15">';
+            ->addColumn('check', function ($row) {
+                return '<input type="checkbox" class="item_checkbox" name="item[]" value="' . $row->id . '" id="input-15">';
             })
             ->addColumn('name', function ($row) {
                 return $row->name;
@@ -145,4 +145,12 @@ class CategoriesController extends Controller
         $this->category->delete($request);
         return response()->json(['success' => 'تم حذف البيانات بنجاح'], 200);
     }
+
+    public function deleteAll(Request $request)
+    {
+        $this->category->destroy($request->item);
+        return response()->json(['success' => 'تم حذف البيانات بنجاح'], 200);
+
+    }//end function
+
 }

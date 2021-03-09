@@ -15,5 +15,7 @@ interface CategoryInterface
 
     public function delete($data);
 
+    public function destroy($data);
+
 
 }

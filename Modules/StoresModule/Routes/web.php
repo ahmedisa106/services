@@ -16,4 +16,5 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => 'admin:admin'], functio
 
     Route::resource('categories', 'CategoriesController')->except('show');
     Route::get('categories/dataTable', 'CategoriesController@dataTable')->name('categories.dataTable');
+    Route::post('categories/delete-all', 'CategoriesController@deleteAll')->name('categories.deleteAll');
 });
