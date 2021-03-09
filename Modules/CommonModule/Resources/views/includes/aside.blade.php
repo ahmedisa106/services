@@ -11,16 +11,17 @@
             </li>
             <li class=" {{active('admin.settings')}} nav-item"><a href="{{url('/admin-panel/settings')}}"><i class="la la-gears"></i><span class="menu-title" data-i18n="nav.dash.main">الإعدادات</span></a>
 
-            <li class=" nav-item"><a href="#"><i class="la la-align-right"></i><span class="menu-title" data-i18n="nav.page_layouts.main">الأقسام</span></a>
+            <li class=" nav-item"><a href="{{route('categories.index')}}"><i class="la la-align-right"></i><span class="menu-title" data-i18n="nav.page_layouts.main">الأقسام</span></a>
                 <ul class="menu-content">
 
 
                     <li class="{{active('categories')}}"><a class="menu-item" href="{{route('categories.index')}}" data-i18n="nav.page_layouts.3_columns.main">الأقسام الرئيسيه</a>
 
                     </li>
-                    <li class="{{active('sub-categories')}}"><a class="menu-item" href="#" data-i18n="nav.page_layouts.3_columns.main">الأقسام الفرعيه</a>
 
-                    </li>
+                    {{--                    <li class="{{active('categories')}}"><a class="menu-item" href="{{route('categories.index')}}?type=1" data-i18n="nav.page_layouts.3_columns.main">الأقسام الفرعيه</a>--}}
+
+                    {{--                    </li>--}}
 
                 </ul>
             </li>

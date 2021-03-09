@@ -96,7 +96,28 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">لا</button>
-                    <button type="button" onclick="delete_form()" class="btn btn-outline-primary">نعم</button>
+                    <button type="button" onclick="delete_form()" class=" btn btn-outline-primary">نعم</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal hidden  animated jello text-left" id="jello_single" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel45" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel45">تأكيد الحذف</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-center">هل تريد الحذف !</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">لا</button>
+                    <button type="button" class="delete_btn btn btn-outline-primary">نعم</button>
                 </div>
             </div>
         </div>
@@ -119,8 +140,6 @@
             </div>
         </div>
     </div>
-
-
 @endsection
 
 @push('js')
@@ -147,7 +166,10 @@
 
                 "ajax": {
                     "url": "{{route('categories.dataTable')}}",
-                    "type": "GET"
+                    "type": "GET",
+                    "data": {
+                        'type':{{$type}}
+                    },
                 },
                 "columns": [
                     {data: 'check', name: 'check', orderable: false, searchable: false},
@@ -172,9 +194,9 @@
             id = form.find('.model_id').val();
             url = form.attr('action');
 
+            $('#jello_single').removeClass('hidden').modal().show();
 
-            $confirm = confirm('هل تريد حذف القسم !');
-            if ($confirm) {
+            $(document).on('click', '.delete_btn', function () {
 
                 $.ajax({
                     'type': 'delete',
@@ -191,6 +213,8 @@
 
                         200: function (response) {
                             toastr.success(response.success, '', {positionClass: 'toast-bottom-left'});
+                            $('#jello_single').addClass('hidden').modal().hide();
+                            $('.modal-backdrop').removeClass('modal-backdrop').removeClass('show');
                             $('#categories_table').DataTable().ajax.reload();
 
 
@@ -204,7 +228,9 @@
 
 
                 });
-            }
+            })
+
+
         })
     </script>
 

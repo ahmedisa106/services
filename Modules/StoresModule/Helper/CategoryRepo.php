@@ -86,6 +86,11 @@ class CategoryRepo implements CategoryInterface
 
     public function destroy($data)
     {
+        foreach ($data as $id) {
+            $cat = $this->find($id);
+            $this->deleteOldPhoto($cat->photo);
+            $this->deleteOldPhoto($cat->cover);
+        }
         $this->model->destroy($data);
 
     }//end function

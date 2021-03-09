@@ -28,14 +28,29 @@ class CategoriesController extends Controller
 
     public function index()
     {
+
+
+        $type = 0;
+        if (request()->has('type')) {
+
+
+            $type = request('type');
+
+        }
+
         $title = 'الأقسام';
-        return view('storesmodule::categories.index', compact('title'));
+        return view('storesmodule::categories.index', compact('title', 'type'));
     }
 
     public function dataTable()
     {
-
         $categories = $this->category->getALl();
+        if (\request('type') && \request('type') != null) {
+            $categories = \Modules\StoresModule\Entities\Category::where('parent_id', '!=', null)->get();
+
+        }
+
+
         return DataTables::of($categories)
             ->addColumn('check', function ($row) {
                 return '<input type="checkbox" class="item_checkbox" name="item[]" value="' . $row->id . '" id="input-15">';
