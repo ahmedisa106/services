@@ -1,0 +1,13 @@
+{
+    "name": "StoresModule",
+    "alias": "storesmodule",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\StoresModule\\Providers\\StoresModuleServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

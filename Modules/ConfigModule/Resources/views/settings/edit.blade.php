@@ -13,16 +13,6 @@
 @endpush
 @section('content')
 
-    <div class="">
-        <div id="dynamic" class="progress-bar d-none progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-            <span id="current-progress"></span>
-        </div>
-    </div>
-    <br>
-
-
-
-
     <section id="validation">
         <div class="row">
             <div class="col-12">
@@ -43,12 +33,12 @@
                     <div class="card-content collapse show">
                         <div class="card-body">
 
-                            <form id="settings-form" action="{{route('settings.save')}}" class="steps-validation wizard-circle" method="post" enctype="multipart/form-data">
+                            <form id="settings-form" action="{{route('settings.save')}}" class=" wizard-circle" method="post" enctype="multipart/form-data">
                             @csrf
 
 
                             <!-- Step 1 -->
-                                <h6>الخطوه الأولي </h6>
+
                                 <fieldset>
                                     <div class="row">
                                         <div class="col-md-12">
@@ -57,7 +47,7 @@
                                                     إسم الموقع :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <input type="text" value="{{settings()->name}}" class="form-control " id="firstName3" name="name">
+                                                <input type="text" required value="{{settings()->name}}" class="form-control " id="firstName3" name="name">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -66,7 +56,7 @@
                                                     العنوان :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <input type="text" value="{{settings()->address}}" class="form-control " id="lastName3" name="address">
+                                                <input type="text" required value="{{settings()->address}}" class="form-control " id="lastName3" name="address">
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +67,7 @@
                                                     البريد الﻹلكتروني :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <input type="email" value="{{settings()->email}}" class="form-control " id="email" name="email">
+                                                <input type="email" required value="{{settings()->email}}" class="form-control " id="email" name="email">
                                             </div>
                                         </div>
 
@@ -89,7 +79,7 @@
                                                     وصف الموقع :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <textarea name="description" id="ckeditor" cols="30" rows="15" class="ckeditor">{{settings()->description}}</textarea>
+                                                <textarea class="form-control" name="description" id="" cols="150" rows="10">{{settings()->description}}</textarea>
 
                                             </div>
                                         </div>
@@ -98,7 +88,7 @@
 
                                 </fieldset>
                                 <!-- Step 2 -->
-                                <h6>الخطوه الثانيه</h6>
+
                                 <fieldset>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -151,7 +141,7 @@
                                     </div>
                                 </fieldset>
 
-                                <h6>الخطوه الثالثه</h6>
+
                                 <fieldset>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -195,6 +185,7 @@
                                 </fieldset>
 
 
+                                <button class="btn btn-success"><i class="la la-check"></i>حفظ</button>
                             </form>
                         </div>
                     </div>
@@ -204,7 +195,6 @@
     </section>
 @endsection
 @push('js')
-    <script src="{{aurl('app-assets/vendors/js/editors/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
     <script src="{{aurl('app-assets/vendors/js/extensions/jquery.steps.min.js')}}" type="text/javascript"></script>
     <script src="{{aurl('app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js')}}" type="text/javascript"></script>
     <script src="{{aurl('app-assets/vendors/js/pickers/daterange/daterangepicker.js')}}" type="text/javascript"></script>
@@ -215,26 +205,7 @@
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="{{aurl('app-assets/js/scripts/forms/wizard-steps.js')}}" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
-    <script src="{{aurl('app-assets/js/scripts/editors/editor-ckeditor.js')}}" type="text/javascript"></script>
-
-
     <script>
-        $(function () {
-            var current_progress = 0;
-            var interval = setInterval(function () {
-                current_progress += 10;
-                $("#dynamic")
-                    .css("width", current_progress + "%")
-                    .attr("aria-valuenow", current_progress)
-                    .text(current_progress + " % جاري التحميل ..");
-                if (current_progress >= 100)
-                    clearInterval(interval);
-            }, 500);
-        });
-    </script>
-    <script>
-
-
         var loadFileLogo = function (event) {
             var output = document.getElementById('logo');
             output.src = URL.createObjectURL(event.target.files[0]);
@@ -257,77 +228,39 @@
             e.preventDefault();
             var url = $(this).attr('action'),
                 form = new FormData($('#settings-form')[0]);
-
-
             $.ajax({
-
                 url: url,
                 type: 'post',
                 contentType: false,
                 cache: false,
                 processData: false,
                 data: form,
-                beforeSend: function () {
-
-                    $('#dynamic').removeClass('d-none');
-
-                },
 
                 'statusCode': {
 
                     200: function (response) {
-
+                        toastr.success(response.success, '', {positionClass: 'toast-bottom-left'})
 
                         setTimeout(function () {
-                            $.notify(
-                                response.success, 'success',
-                            );
-                            $('#dynamic').addClass('d-none');
-                            window.location.href = '';
-                        }, 700)
 
+                            window.location.reload();
+                        }, 1000)
                     },
                     404: function (xhr) {
-
-
                         $.each(xhr.responseJSON.errors, function (key, value) {
-
-
-                            setTimeout(function () {
-                                $.notify(
-                                    value,
-                                );
-                                $('#dynamic').addClass('d-none');
-                            }, 500)
-
+                            toastr.error(value, '', {positionClass: 'toast-bottom-left'})
                         });
                     },
                     422: function (xhr) {
 
                         $.each(xhr.responseJSON.errors, function (key, value) {
-
-
-                            setTimeout(function () {
-                                $.notify(
-                                    value,
-                                );
-                                $('#dynamic').addClass('d-none');
-                            }, 500)
-
+                            toastr.error(value, '', {positionClass: 'toast-bottom-left'})
                         });
-
                     }
                 }
-
-
             });
-
         })
-
-
     </script>
-
-
 
 @endpush
 

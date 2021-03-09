@@ -16,5 +16,15 @@
 <!-- END PAGE LEVEL JS-->
 <script src="{{asset('assets')}}/custom/js/notify.min.js" type="text/javascript"></script>
 <script src="{{asset('assets')}}/custom/js/progress.js" type="text/javascript"></script>
+<script src="{{aurl('')}}/app-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
+<script src="{{aurl('')}}/app-assets/js/scripts/forms/checkbox-radio.js" type="text/javascript"></script>
+<script src="{{aurl('')}}/app-assets/vendors/js/extensions/toastr.min.js" type="text/javascript"></script>
+<script src="{{aurl('')}}/app-assets/js/scripts/extensions/toastr.js" type="text/javascript"></script>
+
+<script src="{{aurl('')}}/app-assets/vendors/js/extensions/jquery.toolbar.min.js" type="text/javascript"></script>
+
+<script src="{{aurl('')}}/app-assets/js/scripts/extensions/toolbar.js" type="text/javascript"></script>
+
+<script src="{{aurl('assets/js/main.js')}}"></script>
 
 @stack('js')

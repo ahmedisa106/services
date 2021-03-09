@@ -25,6 +25,17 @@
 <!-- BEGIN Custom CSS-->
 <link rel="stylesheet" type="text/css" href="{{aurl()}}/assets/css/style-rtl.css">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/custom/css/progressjs.css')}}">
+<link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/vendors/css/forms/icheck/icheck.css">
+<link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/vendors/css/forms/icheck/custom.css">
+<link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/css-rtl/plugins/forms/checkboxes-radios.css">
+
+<link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/vendors/css/extensions/toastr.css">
+
+<link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/css-rtl/plugins/extensions/toastr.css">
+
+<link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/vendors/css/extensions/jquery.toolbar.css">
+
+
 <!-- END Custom CSS-->
 <link href="http://fonts.cdnfonts.com/css/cairo-2" rel="stylesheet">
 <style>

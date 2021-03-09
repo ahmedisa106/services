@@ -3,5 +3,6 @@
     "AdminModule": true,
     "CommonModule": true,
     "FrontModule": true,
-    "ConfigModule": true
+    "ConfigModule": true,
+    "StoresModule": true
 }
