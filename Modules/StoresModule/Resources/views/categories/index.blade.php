@@ -52,7 +52,7 @@
                                         <th>
 
 
-                                            <label for="check_all">حذف الكل</label>
+                                            <label for="check_all"> الكل</label>
                                             <input type="checkbox" id="check_all">
 
                                             {{--                                            <button class="btn btn-outline-danger" id="delete_all"><i class="la la-trash"></i></button>--}}
@@ -160,7 +160,7 @@
                     {extend: 'pdf'},
                     {extend: 'copy'},
                 ],
-                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                "lengthMenu": [[25, 50, -1], [25, 50, "All"]],
                 "processing": true,
                 "serverSide": true,
 
@@ -194,9 +194,10 @@
             id = form.find('.model_id').val();
             url = form.attr('action');
 
-            $('#jello_single').removeClass('hidden').modal().show();
 
-            $(document).on('click', '.delete_btn', function () {
+            $confirm = confirm('هل تريد حذف القسم !');
+            if ($confirm) {
+
 
                 $.ajax({
                     'type': 'delete',
@@ -213,8 +214,7 @@
 
                         200: function (response) {
                             toastr.success(response.success, '', {positionClass: 'toast-bottom-left'});
-                            $('#jello_single').addClass('hidden').modal().hide();
-                            $('.modal-backdrop').removeClass('modal-backdrop').removeClass('show');
+
                             $('#categories_table').DataTable().ajax.reload();
 
 
@@ -228,7 +228,8 @@
 
 
                 });
-            })
+
+            }
 
 
         })

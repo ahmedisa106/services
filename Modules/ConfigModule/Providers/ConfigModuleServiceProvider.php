@@ -2,8 +2,10 @@
 
 namespace Modules\ConfigModule\Providers;
 
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
+use Modules\ConfigModule\Entities\Setting;
 
 class ConfigModuleServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,15 @@ class ConfigModuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (Schema::hasTable('settings')) {
+            $settings = Setting::orderBy('id', 'desc')->first();
+            View::composer('*', function ($view) use ($settings) {
+
+                $view->with('settings', $settings);
+
+            });
+
+        }
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();

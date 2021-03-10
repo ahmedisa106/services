@@ -6,8 +6,8 @@
                 <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
                 <li class="nav-item mr-auto">
                     <a class="navbar-brand" href="{{url('/admin-panel')}}">
-                        <img class="brand-logo" alt="modern admin logo" src="{{asset('images/logo/'.settings()->logo)}}">
-                        <h3 class="brand-text">{{settings()->name}}</h3>
+                        <img class="brand-logo" alt="modern admin logo" src="{{asset('images/logo/'.$settings->logo)}}">
+                        <h3 class="brand-text">{{$settings->name}}</h3>
                     </a>
                 </li>
                 <li class="nav-item d-none d-md-block float-right"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="toggle-icon ft-toggle-right font-medium-3 white" data-ticon="ft-toggle-right"></i></a></li>
@@ -35,7 +35,7 @@
                   <span class="user-name text-bold-700">{{auth('admin')->user()->name}}</span>
                 </span>
                             <span class="avatar avatar-online">
-                  <img src="{{asset('images/logo/'.settings()->logo)}}" alt="avatar"><i></i></span>
+                  <img src="{{asset('images/logo/'.$settings->logo)}}" alt="avatar"><i></i></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
 

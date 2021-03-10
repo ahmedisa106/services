@@ -47,7 +47,7 @@
                                                     إسم الموقع :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <input type="text" required value="{{settings()->name}}" class="form-control " id="firstName3" name="name">
+                                                <input type="text" required value="{{$settings->name}}" class="form-control " id="firstName3" name="name">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -56,7 +56,7 @@
                                                     العنوان :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <input type="text" required value="{{settings()->address}}" class="form-control " id="lastName3" name="address">
+                                                <input type="text" required value="{{$settings->address}}" class="form-control " id="lastName3" name="address">
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
                                                     البريد الﻹلكتروني :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <input type="email" required value="{{settings()->email}}" class="form-control " id="email" name="email">
+                                                <input type="email" required value="{{$settings->email}}" class="form-control " id="email" name="email">
                                             </div>
                                         </div>
 
@@ -79,7 +79,7 @@
                                                     وصف الموقع :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <textarea class="form-control" name="description" id="" cols="150" rows="10">{{settings()->description}}</textarea>
+                                                <textarea class="form-control" name="description" id="" cols="150" rows="10">{{$settings->description}}</textarea>
 
                                             </div>
                                         </div>
@@ -97,19 +97,19 @@
                                                     الهاتف :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <input type="text" value="{{settings()->mobile}}" class="form-control " id="mobile" name="mobile">
+                                                <input type="text" value="{{$settings->mobile}}" class="form-control " id="mobile" name="mobile">
                                             </div>
                                             <div class="form-group">
                                                 <label for="emailAddress6">
                                                     الواتس :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <input type="text" value="{{settings()->whatsapp}}" class="form-control " id="whatsapp" name="whatsapp">
+                                                <input type="text" value="{{$settings->whatsapp}}" class="form-control " id="whatsapp" name="whatsapp">
                                             </div>
                                             <div class="form-group">
                                                 <label for="videoUrl3">فيس بوك :</label>
                                                 <span class="danger">*</span>
-                                                <input type="url" value="{{settings()->facebook}}" class="form-control" id="facebook" name="facebook">
+                                                <input type="url" value="{{$settings->facebook}}" class="form-control" id="facebook" name="facebook">
                                             </div>
 
 
@@ -120,14 +120,14 @@
                                                     تويتر :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <input type="url" value="{{settings()->twitter}}" class="form-control " id="twitter" name="twitter">
+                                                <input type="url" value="{{$settings->twitter}}" class="form-control " id="twitter" name="twitter">
                                             </div>
                                             <div class="form-group">
                                                 <label for="jobTitle5">
                                                     يوتيوب :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <input type="url" value="{{settings()->youtube}}" class="form-control " id="youtube" name="youtube">
+                                                <input type="url" value="{{$settings->youtube}}" class="form-control " id="youtube" name="youtube">
                                             </div>
 
                                             <div class="form-group">
@@ -135,7 +135,7 @@
                                                     انستاجرام :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <input type="url" value="{{settings()->instagram}}" class="form-control " id="instagram" name="instagram">
+                                                <input type="url" value="{{$settings->instagram}}" class="form-control " id="instagram" name="instagram">
                                             </div>
                                         </div>
                                     </div>
@@ -152,8 +152,8 @@
                                                 </label>
                                                 <input type="file" accept="image/*" onchange="loadFileLogo(event)" class="form-control " name="logo">
                                                 <br>
-                                                @if(settings()->logo)
-                                                    <img src="{{asset('images/logo/'.settings()->logo)}}" style="width: 150px; height: 150px" id="logo"/>
+                                                @if($settings->logo)
+                                                    <img src="{{asset('images/logo/'.$settings->logo)}}" style="width: 150px; height: 150px" id="logo"/>
                                                 @else
                                                     <img src="{{asset('images/logo.png')}}" style="width: 150px; height: 150px" id="logo"/>
                                                 @endif
@@ -171,8 +171,8 @@
                                                 </label>
                                                 <input type="file" accept="image/*" onchange="loadFileIcon(event)" class="form-control " name="icon">
                                                 <br>
-                                                @if(settings()->icon)
-                                                    <img src="{{asset('images/icon/'.settings()->icon)}}" style="width: 150px; height: 150px" id="icon"/>
+                                                @if($settings->icon)
+                                                    <img src="{{asset('images/icon/'.$settings->icon)}}" style="width: 150px; height: 150px" id="icon"/>
                                                 @else
                                                     <img src="{{asset('images/logo.png')}}" style="width: 150px; height: 150px" id="icon"/>
                                                 @endif

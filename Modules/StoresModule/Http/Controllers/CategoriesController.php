@@ -73,7 +73,7 @@ class CategoriesController extends Controller
                 $delete = '  <form  class=" text-center deleteForm " action=' . route('categories.destroy', $row->id) . ' method="post">
                  ' . csrf_field() . method_field('delete') . '
                  <input type="hidden" class="model_id" name="id" value="' . $row->id . '">
-                <button    type="submit" class="btn btn-sm btn-outline-danger deleteBtn float-left ml-1 "><i class="la la-trash"></i></button>
+                <button    type="submit"  class="btn btn-sm btn-outline-danger deleteBtn float-left ml-1 "><i class="la la-trash"></i></button>
               </form>';
                 return $edit . ' ' . $delete;
             })
@@ -158,6 +158,7 @@ class CategoriesController extends Controller
     public function destroy(Request $request)
     {
         $this->category->delete($request);
+
         return response()->json(['success' => 'تم حذف البيانات بنجاح'], 200);
     }
 

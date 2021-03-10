@@ -23,13 +23,13 @@ if (!function_exists('active')) {
     }
 }
 
-if (!function_exists('settings')) {
-    function settings()
-    {
-        return \Modules\ConfigModule\Entities\Setting::orderBy('id', 'desc')->first();
-
-    }//end function
-}
+//if (!function_exists('settings')) {
+//    function $settings->
+//    {
+//        return \Modules\ConfigModule\Entities\Setting::orderBy('id', 'desc')->first();
+//
+//    }//end function
+//}
 
 if (!function_exists('yajra_lang')) {
     function yajra_lang()
