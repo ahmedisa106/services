@@ -434,6 +434,7 @@
             addRemoveLinks: true,
             autoProcessQueue: false,
             uploadMultiple: true,
+            dictRemoveFile: 'حذف',
 
             parallelUploads: 10,
             init: function () {
