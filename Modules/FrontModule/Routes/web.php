@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('frontmodule')->group(function() {
+Route::prefix('')->group(function () {
     Route::get('/', 'FrontModuleController@index');
 });

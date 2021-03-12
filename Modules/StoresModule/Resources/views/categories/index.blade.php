@@ -167,9 +167,7 @@
                 "ajax": {
                     "url": "{{route('categories.dataTable')}}",
                     "type": "GET",
-                    "data": {
-                        'type':{{$type}}
-                    },
+
                 },
                 "columns": [
                     {data: 'check', name: 'check', orderable: false, searchable: false},

@@ -11,10 +11,12 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'admin:admin', 'prefix' => 'admin-panel', 'name' => ''], function () {
 
     Route::get('/settings', 'ConfigController@edit')->name('admin.settings');
     Route::any('/settings/save', 'ConfigController@save')->name('settings.save');
+
 
 });

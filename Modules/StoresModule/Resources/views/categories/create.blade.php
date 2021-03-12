@@ -63,7 +63,7 @@
                                                     وصف القسم :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <textarea class="form-control" name="description" id="" cols="150" rows="10"></textarea>
+                                                <textarea class="form-control" name="description" id="description" cols="150" rows="10"></textarea>
                                             </div>
                                         </div>
 
@@ -162,7 +162,11 @@
     <script src="{{aurl('')}}/app-assets/vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
     <script src="{{aurl('')}}/app-assets/js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
 
+    {{--    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>--}}
 
+    {{--    <script>--}}
+    {{--        CKEDITOR.replace('description');--}}
+    {{--    </script>--}}
 
 
     <script> /*image viewer*/

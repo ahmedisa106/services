@@ -12,6 +12,8 @@ $(document).on('click', '#check_all', function () {
 function delete_form() {
     form = $('#form_data');
     url = form.attr('action');
+    table_id = form.find('table').attr('id');
+
 
     $.ajax({
         'type': 'post',
@@ -29,7 +31,7 @@ function delete_form() {
                 $('.modal-backdrop').removeClass('modal-backdrop').removeClass('show');
 
 
-                $('#categories_table').DataTable().ajax.reload();
+                $('#' + table_id).DataTable().ajax.reload();
 
             },
             404: function (xhr) {

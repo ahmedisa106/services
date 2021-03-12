@@ -7,9 +7,9 @@
     <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
     <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
-    <title>{{settings()->name}} | تسجيل الدخول</title>
+    <title>{{$settings->name}} | تسجيل الدخول</title>
     <link rel="apple-touch-icon" href="{{aurl()}}/app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/icon/'.settings()->icon)}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/icon/'.$settings->icon)}}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
           rel="stylesheet">
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
@@ -46,8 +46,8 @@
                 <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
                 <li class="nav-item">
                     <a class="navbar-brand" href="{{url('/admin-panel')}}">
-                        <img class="brand-logo" alt="modern admin logo" src="{{asset('images/logo/'.settings()->logo)}}">
-                        <h3 class="brand-text">{{settings()->name}}</h3>
+                        <img class="brand-logo" alt="modern admin logo" src="{{asset('images/logo/'.$settings->logo)}}">
+                        <h3 class="brand-text">{{$settings->name}}</h3>
                     </a>
                 </li>
                 <li class="nav-item d-md-none">
@@ -70,10 +70,10 @@
                         <div class="card border-grey border-lighten-3 m-0">
                             <div class="card-header border-0">
                                 <div class="card-title text-center">
-                                    <img style="width: 150px; height: 150px;" src="{{asset('images/logo/'.settings()->logo)}}" alt="branding logo">
+                                    <img style="width: 150px; height: 150px;" src="{{asset('images/logo/'.$settings->logo)}}" alt="branding logo">
                                 </div>
                                 <p class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
-                                    <span>{{settings()->name}}</span>
+                                    <span>{{$settings->name}}</span>
                                 </p>
                             </div>
                             <div class="card-content">

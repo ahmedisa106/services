@@ -26,6 +26,16 @@
 <script src="{{aurl('')}}/app-assets/js/scripts/extensions/toolbar.js" type="text/javascript"></script>
 <script src="{{aurl('')}}/app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
 
+<script type="text/javascript" src="{{aurl('')}}/app-assets/vendors/js/ui/jquery.sticky.js"></script>
+<script src="{{aurl('')}}/app-assets/vendors/js/extensions/datedropper.min.js" type="text/javascript"></script>
+<script src="{{aurl('')}}/app-assets/vendors/js/extensions/timedropper.min.js" type="text/javascript"></script>
+<script src="{{aurl('')}}/app-assets/js/scripts/extensions/date-time-dropper.js" type="text/javascript"></script>
+
+
+<script src="{{aurl('')}}/app-assets/vendors/js/forms/toggle/bootstrap-switch.min.js" type="text/javascript"></script>
+<script src="{{aurl('')}}/app-assets/vendors/js/forms/toggle/bootstrap-checkbox.min.js" type="text/javascript"></script>
+<script src="{{aurl('')}}/app-assets/vendors/js/forms/toggle/switchery.min.js" type="text/javascript"></script>
+<script src="{{aurl('')}}/app-assets/js/scripts/forms/switch.js" type="text/javascript"></script>
 
 <script src="{{aurl('assets/js/main.js')}}"></script>
 

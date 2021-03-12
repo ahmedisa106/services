@@ -23,6 +23,13 @@ class Category extends Model
 
     }//end function
 
+    public function stores()
+    {
+        return $this->hasMany(Store::class, 'category_id');
+
+    }//end function
+
+
     public function getPhotoAttribute($value)
     {
 

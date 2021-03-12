@@ -72,7 +72,7 @@
                                                     وصف القسم :
                                                     <span class="danger">*</span>
                                                 </label>
-                                                <textarea class="form-control" name="description" id="" cols="150" rows="10">{{$cat->description}}</textarea>
+                                                <textarea class="form-control" name="description" id="description" cols="150" rows="10">{{$cat->description}}</textarea>
                                             </div>
                                         </div>
 
@@ -139,6 +139,7 @@
 
                                             </label>
                                             <span class="danger">*</span>
+                                            <label for="select2-rtl-multi"></label>
                                             <select name="parent_id" class="select2-rtl form-control" id="select2-rtl-multi" style="width: 1500px;">
                                                 <optgroup label="إختر قسم ">
                                                     <option value="0">قسم رئيسي</option>
@@ -182,7 +183,11 @@
     <!-- END PAGE LEVEL JS-->
     <script src="{{aurl('')}}/app-assets/vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
     <script src="{{aurl('')}}/app-assets/js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
+    {{--    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>--}}
 
+    {{--    <script>--}}
+    {{--        CKEDITOR.replace('description');--}}
+    {{--    </script>--}}
 
     <script> /*progress Bar*/
         $(function () {
