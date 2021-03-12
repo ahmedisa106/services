@@ -408,9 +408,13 @@
                             $('#store_id').val(response.store_id);
                             myDropzone.processQueue();
                         }
-                        var message = 'تم حفظ البيانات بنجاح'
+                        var message = 'تم تعديل البيانات بنجاح'
 
                         toastr.success(message, '', {positionClass: 'toast-bottom-left'})
+                        setTimeout(function () {
+
+                            window.location.href = '../../stores';
+                        }, 800)
 
                     },
 

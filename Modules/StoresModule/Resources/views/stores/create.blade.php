@@ -398,6 +398,11 @@
 
                         toastr.success(message, '', {positionClass: 'toast-bottom-left'})
 
+                        setTimeout(function () {
+
+                            window.location.href = '../stores';
+                        }, 800)
+
                     },
 
                     422: function (xhr) {
