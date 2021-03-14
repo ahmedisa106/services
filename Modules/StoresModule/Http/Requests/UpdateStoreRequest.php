@@ -4,7 +4,7 @@ namespace Modules\StoresModule\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateStore extends FormRequest
+class UpdateStoreRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

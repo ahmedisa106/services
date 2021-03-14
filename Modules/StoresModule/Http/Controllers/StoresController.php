@@ -5,13 +5,14 @@ namespace Modules\StoresModule\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\File;
+use Modules\CommonModule\Helper\upload;
 use Modules\StoresModule\Entities\AlbumStore;
+use Modules\StoresModule\Entities\Store;
 use Modules\StoresModule\Helper\CategoryRepo;
 use Modules\StoresModule\Helper\StoreRepo;
 use Modules\StoresModule\Helper\StoreService;
-use Modules\StoresModule\Http\Requests\Store;
-use Modules\StoresModule\Http\Requests\UpdateStore;
+use Modules\StoresModule\Http\Requests\StoreRequest;
+use Modules\StoresModule\Http\Requests\UpdateStoreRequest;
 use Yajra\DataTables\Facades\DataTables;
 
 class StoresController extends Controller
@@ -20,6 +21,8 @@ class StoresController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+
+    use upload;
 
     private $category;
     private $store;
@@ -102,8 +105,9 @@ class StoresController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Store $request)
+    public function store(StoreRequest $request)
     {
+
         $data = $request->except('_token', 'store_id');
         $store = $this->store->create($data);
         $store_id = $store->id;
@@ -112,17 +116,12 @@ class StoresController extends Controller
 
     public function uploadAlbum(Request $request)
     {
-        $store = $this->store->find($request->store_id);
-        $this->service->uploadAlbum($store, $request->file);
-
+        $this->uploadAlbums(AlbumStore::class, Store::class, $request->store_id, $request->file, 'album');
     }//end function
 
     public function removeAlbumPhoto(Request $request)
     {
-        $photo = AlbumStore::findOrFail($request->id);
-        File::delete(public_path('images/stores/album/' . $photo->photo));
-        $photo->delete();
-
+        $this->removeAlbumPhotos(AlbumStore::class, 'stores', 'album', $request->id);
     }//end function
 
 
@@ -155,7 +154,7 @@ class StoresController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(UpdateStore $request, $id)
+    public function update(UpdateStoreRequest $request, $id)
     {
         $data = $request->except('_token', '_method', 'store_id');
         $this->store->update($data, $id);
@@ -171,7 +170,6 @@ class StoresController extends Controller
     public function destroy(Request $request)
     {
         $this->store->delete($request);
-
         return response()->json(['success' => 'تم حذف البيانات بنجاح'], 200);
     }
 

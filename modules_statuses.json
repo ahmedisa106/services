@@ -4,5 +4,6 @@
     "CommonModule": true,
     "FrontModule": true,
     "ConfigModule": true,
-    "StoresModule": true
+    "StoresModule": true,
+    "AreaModule": true
 }

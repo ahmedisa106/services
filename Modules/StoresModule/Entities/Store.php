@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Store extends Model
 {
 
-    protected $guarded = [];
+    protected $fillable = ['category_id', 'work_from', 'work_to', 'name', 'description', 'address', 'email', 'photo', 'cover', 'mobile', 'whatsapp', 'facebook', 'twitter', 'instagram', 'youtube', 'video', 'status', ''];
 
 
     public function category()
@@ -39,8 +39,29 @@ class Store extends Model
     public function getStatusAttribute($val)
     {
 
-        return ($val == 'open') ? 'مفتوح' : 'مغلق';
+        if ($val == 'close') {
+            return 'مغلق';
+        } else {
+            return 'مفتوح';
+        }
 
+
+    }//end function
+
+
+    public function getPhotoAttribute($val)
+    {
+        if ($val != null) {
+            return asset('images/stores/' . $val);
+        }
+
+    }//end function
+
+    public function getCoverAttribute($val)
+    {
+        if ($val != null) {
+            return asset('images/stores/' . $val);
+        }
 
     }//end function
 

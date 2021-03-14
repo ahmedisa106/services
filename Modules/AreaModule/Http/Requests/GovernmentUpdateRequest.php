@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\StoresModule\Http\Requests;
+namespace Modules\AreaModule\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Store extends FormRequest
+class GovernmentUpdateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,9 +14,7 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:stores',
-            'description' => 'required',
-            'category_id' => 'required',
+            'name' => 'required|unique:governments,name,' . $this->id,
         ];
     }
 
@@ -25,8 +23,6 @@ class Store extends FormRequest
      *
      * @return bool
      */
-
-
     public function authorize()
     {
         return true;
@@ -34,13 +30,10 @@ class Store extends FormRequest
 
     public function messages()
     {
-
         return [
-            'name.required' => 'الاسم مطلوب',
+            'name.required' => 'الإسم مطلوب',
             'name.unique' => 'الإسم موجود بالفعل',
-            'description.required' => 'الوصف مطلوب',
-            'category_id.required' => 'القسم مطلوب',
         ];
 
-    }//end function
+    }
 }

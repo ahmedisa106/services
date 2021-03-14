@@ -41,6 +41,9 @@
 <link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/vendors/css/forms/toggle/switchery.min.css">
 <link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/css-rtl/plugins/forms/switch.css">
 <link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/css-rtl/core/colors/palette-switch.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+
+
 <!-- END Custom CSS-->
 <link href="http://fonts.cdnfonts.com/css/cairo-2" rel="stylesheet">
 <style>

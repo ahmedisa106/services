@@ -28,6 +28,9 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{aurl()}}/assets/css/style-rtl.css">
+    <link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/vendors/css/extensions/toastr.css">
+
+    <link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/css-rtl/plugins/extensions/toastr.css">
     <!-- END Custom CSS-->
     <link href="http://fonts.cdnfonts.com/css/cairo-2" rel="stylesheet">
     <style>
@@ -80,18 +83,18 @@
 
 
                                 <div class="card-body pt-0">
-                                    <form class="form-horizontal" action="{{route('admin.login')}}" method="post">
+                                    <form id="login_form" class="form-horizontal" action="{{route('admin.login')}}" method="post">
                                         @csrf
                                         <fieldset class="form-group position-relative has-icon-left">
                                             <input type="email" name="email" class="form-control input-lg" id="Email" placeholder="البريد الالكتروني"
-                                                   required>
+                                            >
                                             <div class="form-control-position">
                                                 <i class="la la-envelope"></i>
                                             </div>
                                         </fieldset>
                                         <fieldset class="form-group position-relative has-icon-left">
                                             <input type="password" name="password" class="form-control input-lg" id="user-password" placeholder="كلمه المرور"
-                                                   required>
+                                            >
                                             <div class="form-control-position">
                                                 <i class="la la-key"></i>
                                             </div>
@@ -131,5 +134,55 @@
 <!-- BEGIN PAGE LEVEL JS-->
 <script src="{{aurl()}}/app-assets/js/scripts/forms/form-login-register.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
+<script src="{{aurl('')}}/app-assets/vendors/js/extensions/toastr.min.js" type="text/javascript"></script>
+<script src="{{aurl('')}}/app-assets/js/scripts/extensions/toastr.js" type="text/javascript"></script>
+<script>
+    $('#login_form').on('submit', function (e) {
+        e.preventDefault();
+
+        form = $(this).serialize();
+        url = $(this).attr('action');
+
+        $.ajax({
+            'type': 'post',
+            'url': url,
+            data: {
+                'form': form,
+                '_token': '{{csrf_token()}}',
+            },
+            beforeSend: function () {
+
+            },
+            'statusCode': {
+
+                200: function (response) {
+
+                    toastr.success(response.success, '', {positionClass: 'toast-bottom-left'});
+                    setTimeout(function () {
+
+                        window.location.href = '{{route('admin.dashboard')}}'
+                    }, 800)
+
+
+                },
+                402: function (response) {
+
+                    console.log()
+                    toastr.error(response.responseJSON.errors, '', {positionClass: 'toast-bottom-left'});
+
+                },
+                404: function (xhr) {
+
+                    $.each(xhr.responseJSON.error, function (key, value) {
+                        toastr.error(value, '', {positionClass: 'toast-bottom-left'});
+                    });
+                }
+            }
+
+
+        });
+    })
+
+</script>
 </body>
 </html>

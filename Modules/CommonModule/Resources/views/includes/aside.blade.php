@@ -22,7 +22,9 @@
             </li>
             <li class=" nav-item {{active('stores')}}"><a href="{{route('stores.index')}}"><i class="la la-shopping-cart"></i><span class="menu-title" data-i18n="nav.page_layouts.main">المحلات</span></a>
             </li>
-            <li class=" {{active('admin.settings')}} nav-item"><a href="{{url('/admin-panel/settings')}}"><i class="la la-gears"></i><span class="menu-title" data-i18n="nav.dash.main">الإعدادات</span></a>
+            <li class=" nav-item {{active('governments')}}"><a href="{{route('governments.index')}}"><i class="la la-globe "></i><span class="menu-title" data-i18n="nav.dash.main">المحافظات</span></a>
+            <li class=" nav-item {{active('zones')}}"><a href="{{route('zones.index')}}"><i class="la la-thumb-tack"></i><span class="menu-title" data-i18n="nav.dash.main">المناطق</span></a>
+            <li class=" {{active('admin.settings')}} nav-item"><a href="{{url('/admin-panel/settings')}}"><i class="la la-cog"></i><span class="menu-title" data-i18n="nav.dash.main">الإعدادات</span></a>
 
         </ul>
     </div>

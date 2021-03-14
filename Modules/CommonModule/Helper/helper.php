@@ -61,3 +61,15 @@ if (!function_exists('yajra_lang')) {
         return json_encode($yajra_trans, JSON_UNESCAPED_UNICODE);
     }
 }
+
+if (!function_exists('getYoutubeId')) {
+    function getYoutubeId($url)
+    {
+        preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
+        if (isset($match[1])) {
+            return 'https://www.youtube.com/embed/' . $match[1];
+        } else {
+            return null;
+        }
+    }
+}

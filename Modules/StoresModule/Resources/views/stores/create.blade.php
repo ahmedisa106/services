@@ -109,7 +109,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="video">
-                                                    مسار الفيديو :
+                                                    مسار الفيديو ( يوتيوب ) :
                                                     <span class="danger">*</span>
                                                 </label>
                                                 <input type="url" class="form-control " id="video" name="video">
@@ -236,9 +236,9 @@
                                     <div class="row">
 
                                         <div class="form-group col-md-6">
-                                            <label for="autoswitch"> من : </label>
+                                            <label for="work_from"> من : </label>
                                             <div class="position-relative has-icon-left">
-                                                <input type="text" name="work_from" class="form-control input-lg" id="autoswitch" placeholder="Date Dropper">
+                                                <input type="time" name="work_from" class="form-control input-lg" id="work_from" placeholder="Date Dropper">
                                                 <div class="form-control-position">
                                                     <i class="ft-clock"></i>
                                                 </div>
@@ -246,9 +246,9 @@
                                         </div>
 
                                         <div class="form-group col-md-6">
-                                            <label for="timeformat"> إلي :</label>
+                                            <label for="work_to"> إلي :</label>
                                             <div class="position-relative has-icon-left">
-                                                <input type="text" name="work_to" class="form-control input-lg" id="timeformat" placeholder="Date Dropper">
+                                                <input type="time" name="work_to" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
                                                 <div class="form-control-position">
                                                     <i class="ft-clock"></i>
                                                 </div>
@@ -270,7 +270,7 @@
                                     <h6></h6>
 
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="photo">
                                                     الصوره :
@@ -279,7 +279,24 @@
                                                 <input type="file" accept="image/*" onchange="loadFileLogo(event)" id="photo" class="form-control " name="photo">
                                                 <br>
 
-                                                <img src="{{asset('images/logo.png')}}" style="width: 150px; height: 150px" id="logo"/>
+                                                <img src="{{asset('images/logo.png')}}" style="width: 150px; height: 150px" id="photo_preview"/>
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="cover">
+                                                    الغلاف :
+                                                    <span class="danger">*</span>
+                                                </label>
+                                                <input type="file" accept="image/*" onchange="loadFileIcon(event)" id="cover" class="form-control " name="cover">
+                                                <br>
+
+                                                <img src="{{asset('images/logo.png')}}" style="width: 150px; height: 150px" id="cover_preview"/>
 
 
                                             </div>
@@ -434,14 +451,14 @@
             headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
             paramName: "file",
             maxFilesize: 10,
-            maxFiles: 10,
+            maxFiles: 20,
             acceptedFiles: "image/*",
             addRemoveLinks: true,
             autoProcessQueue: false,
             uploadMultiple: true,
             dictRemoveFile: 'حذف',
 
-            parallelUploads: 10,
+            parallelUploads: 20,
             init: function () {
 
                 myDropzone = this;
@@ -470,14 +487,14 @@
 
 
         var loadFileLogo = function (event) { /*for photo*/
-            var output = document.getElementById('logo');
+            var output = document.getElementById('photo_preview');
             output.src = URL.createObjectURL(event.target.files[0]);
             output.onload = function () {
                 URL.revokeObjectURL(output.src) // free memory
             }
         };
         var loadFileIcon = function (event) { /*for cover*/
-            var output = document.getElementById('icon');
+            var output = document.getElementById('cover_preview');
             output.src = URL.createObjectURL(event.target.files[0]);
             output.onload = function () {
                 URL.revokeObjectURL(output.src) // free memory

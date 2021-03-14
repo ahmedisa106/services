@@ -31,6 +31,13 @@ class CategoryRepo implements CategoryInterface
         return $this->model->getParents()->pluck('name', 'id');
     }
 
+    public function getALlParentExcept($id)
+    {
+        return $this->model->where('id', '!=', $id)->get();
+
+    }//end function
+
+
     public function create($request)
     {
         $data = $request->except('_token');

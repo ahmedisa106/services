@@ -27,7 +27,7 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => 'admin:admin'], functio
 
     Route::get('stores/dataTable', 'StoresController@dataTable')->name('stores.dataTable');
     Route::post('stores/delete-all', 'StoresController@deleteAll')->name('stores.deleteAll');
-    Route::resource('stores', 'StoresController');
+    Route::resource('stores', 'StoresController')->except('show');
     /*end stores*/
 
 

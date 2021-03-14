@@ -4,6 +4,7 @@ namespace Modules\AdminModule\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -15,11 +16,27 @@ class AuthController extends Controller
 
     public function doLogin(Request $request)
     {
-        if (auth()->guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        parse_str($request->form, $data);
 
-            return redirect()->intended('/admin-panel');
+        $validate = Validator::make($data, [
+            'email' => 'required',
+            'password' => 'required',
+        ], [
+            'email.required' => 'البريد مطلوب',
+            'password.required' => 'كلمه المرور مطلوبه',
+        ]);
+        if ($validate->fails()) {
+
+
+            return response()->json(['error' => $validate->errors()->all()], 404);
+        }
+
+        if (auth()->guard('admin')->attempt(['email' => $data['email'], 'password' => $data['password']])) {
+
+
+            return response()->json(['success' => 'تم تسجيل الدخول بنجاح'], 200);
         } else {
-            return redirect()->back();
+            return response()->json(['errors' => 'البريد أو كلمه  المرور خاطئه'], 402);
         }
 
     }//end function

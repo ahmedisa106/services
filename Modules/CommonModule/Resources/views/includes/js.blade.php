@@ -38,5 +38,21 @@
 <script src="{{aurl('')}}/app-assets/js/scripts/forms/switch.js" type="text/javascript"></script>
 
 <script src="{{aurl('assets/js/main.js')}}"></script>
-
+<script>
+    /* to display of right click */
+    // $(document).ready(function (e) {
+    //     $(document).bind("contextmenu", function (e) {
+    //         return false;
+    //     });
+    //     $(document).keydown(function (e) {
+    //         if (e.which === 123) {
+    //
+    //             return false;
+    //
+    //         }
+    //
+    //     });
+    // });
+    /*end display of*/
+</script>
 @stack('js')

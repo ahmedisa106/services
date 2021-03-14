@@ -20,7 +20,8 @@ class CreateStoresTable extends Migration
             $table->string('address')->nullable();
             $table->string('email')->nullable();
             $table->string('photo')->nullable();
-            $table->string('album')->nullable();
+            $table->string('cover')->nullable();
+
             $table->string('mobile')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('facebook')->nullable();

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\CommonModule\Helper\upload;
 use Modules\StoresModule\Helper\CategoryRepo;
-use Modules\StoresModule\Http\Requests\Category;
+use Modules\StoresModule\Http\Requests\CategoryRequest;
 use Modules\StoresModule\Http\Requests\UpdateCategory;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -95,7 +95,7 @@ class CategoriesController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Category $request)
+    public function store(CategoryRequest $request)
     {
         $this->category->create($request);
         return response()->json(['success' => 'تم حفط البيانات بنجاح'], 200);
@@ -119,7 +119,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $title = 'تعديل القسم';
-        $categories = $this->category->getParentCategories();
+        $categories = $this->category->getALlParentExcept($id)->pluck('name', 'id');
         $cat = $this->category->find($id);
         return view('storesmodule::categories.edit', compact('cat', 'categories', 'title'));
     }
