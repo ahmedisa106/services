@@ -2,8 +2,10 @@
 
 namespace Modules\AreaModule\Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Modules\AreaModule\Entities\Government;
+use Modules\AreaModule\Entities\Zone;
 
 class AreaModuleDatabaseSeeder extends Seeder
 {
@@ -16,6 +18,14 @@ class AreaModuleDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $government = new Government();
+        $government->name = 'المنوفيه';
+        $government->save();
+
+        $zone = new Zone();
+        $zone->name = 'شبين الكوم';
+        $zone->government_id = $government->id;
+        $zone->save();
+
     }
 }

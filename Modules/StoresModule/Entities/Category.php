@@ -25,7 +25,7 @@ class Category extends Model
 
     public function stores()
     {
-        return $this->hasMany(Store::class, 'category_id');
+        return $this->belongsToMany(Store::class, 'category_stores', 'category_id', 'store_id');
 
     }//end function
 

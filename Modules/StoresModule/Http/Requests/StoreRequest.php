@@ -16,7 +16,9 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|unique:stores',
             'description' => 'required',
-            'category_id' => 'required',
+            'category_id' => 'array|min:1|required',
+            'government_id' => 'required',
+            'zone_id' => 'required',
         ];
     }
 
@@ -40,6 +42,9 @@ class StoreRequest extends FormRequest
             'name.unique' => 'الإسم موجود بالفعل',
             'description.required' => 'الوصف مطلوب',
             'category_id.required' => 'القسم مطلوب',
+            'government_id.required' => 'المحافظه مطلوبه',
+            'zone_id.required' => 'المنطقه مطلوبه',
+
         ];
 
     }//end function

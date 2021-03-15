@@ -233,17 +233,20 @@
                                                 القسم :
 
                                             </label>
+
+
                                             <span class="danger">*</span>
-                                            <select name="category_id" class="select2-rtl  form-control " id="category">
+                                            <select name="category_id[]" class="select2-rtl select2  form-control" multiple id="category">
                                                 <optgroup label="">
 
-                                                    @forelse($categories as $index=>$category)
-                                                        <option value="{{$index}}" {{($store->category_id == $index)?'selected':''}}>{{$category}}</option>
+                                                    @forelse($categories as $index => $category)
+
+                                                        <option value="{{$index}}" {{in_array($index,$store->category->pluck('id')->toArray())?'selected':'' }}>{{$category}}</option>
+
                                                     @empty
-                                                        <option disabled selected>لا يوجد أقسام حاليا</option>
+                                                        <option selected value="">لا يوجد أقسام حاليا</option>
 
                                                     @endforelse
-                                                    {{--End Foreach--}}
 
 
                                                 </optgroup>
@@ -252,7 +255,41 @@
 
                                         </div>
                                     </div>
+                                    <div class="row">
 
+                                        <div class="form-group col-md-6">
+                                            <label for="gov_id"> المحافظه : </label>
+                                            <select name="government_id" class="select2-rtl select2 form-control " id="gov_id">
+                                                <optgroup label="">
+
+                                                    <option value="" disabled selected>إختر محافظه</option>
+                                                    @forelse($governments as $government)
+
+                                                        <option value="{{$government->id}}" {{$store->government_id == $government->id ?'selected':''}}>{{$government->name}}</option>
+
+                                                    @empty
+                                                        <option selected value="">لا يوجد محافظات حاليا</option>
+
+                                                    @endforelse
+
+
+                                                </optgroup>
+
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="zone_id"> المنطقه :</label>
+                                            <select name="zone_id" class="select2-rtl select2  form-control" id="zone_id">
+                                                <optgroup label="">
+
+
+                                                </optgroup>
+
+                                            </select>
+                                        </div>
+
+                                    </div>
                                     <div class="row">
 
                                         <div class="form-group col-md-6">
@@ -544,5 +581,89 @@
 
     </script>
 
+    <script>
+        val = $('#gov_id option').is(':selected');
 
+
+        if (val) {
+            var id = $('#gov_id').val();
+            $.ajax({
+                'type': 'get',
+                'url': '{{route('stores.getZone')}}',
+
+                data: {
+                    'id': id,
+                },
+                beforeSend: function () {
+
+                },
+                'statusCode': {
+
+                    200: function (data) {
+                        $.each(data.zones, function (key, value) {
+
+                            zone_id = {{$store->zone_id}};
+
+                            var selected_tem;
+                            if (zone_id === value.id) {
+                                selected_tem = 'selected';
+
+
+                            }
+
+                            $('#zone_id').append('<option ' + selected_tem + '   value="' + value.id + '">' + value.name + '</option>'
+                            )
+                            console.log(value)
+                        });
+
+                    },
+                    404: function (xhr) {
+                        $.each(xhr.responseJSON.errors, function (key, value) {
+                            $('#validation-errors').append('<div class="alert alert-danger">' + value + '</div');
+                        });
+                    }
+                }
+
+
+            });
+
+        }
+
+
+        $('#gov_id').on('change', function () {
+
+            $('#zone_id').empty();
+            var id = $(this).val();
+            $.ajax({
+                'type': 'get',
+                'url': '{{route('stores.getZone')}}',
+
+                data: {
+                    'id': id,
+                },
+                beforeSend: function () {
+
+                },
+                'statusCode': {
+
+                    200: function (data) {
+                        $.each(data.zones, function (key, value) {
+
+                            $('#zone_id').append('<option value="' + value.id + '">' + value.name + '</option>')
+                            console.log(value)
+                        });
+
+                    },
+                    404: function (xhr) {
+                        $.each(xhr.responseJSON.errors, function (key, value) {
+                            $('#validation-errors').append('<div class="alert alert-danger">' + value + '</div');
+                        });
+                    }
+                }
+
+
+            });
+
+        })
+    </script>
 @endpush

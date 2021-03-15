@@ -21,7 +21,6 @@ class CreateStoresTable extends Migration
             $table->string('email')->nullable();
             $table->string('photo')->nullable();
             $table->string('cover')->nullable();
-
             $table->string('mobile')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('facebook')->nullable();
@@ -32,10 +31,8 @@ class CreateStoresTable extends Migration
             $table->enum('status', ['open', 'close'])->default('close');
             $table->text('work_from')->nullable();
             $table->text('work_to')->nullable();
-
-            $table->unsignedInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 

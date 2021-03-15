@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Store extends Model
 {
 
-    protected $fillable = ['category_id', 'work_from', 'work_to', 'name', 'description', 'address', 'email', 'photo', 'cover', 'mobile', 'whatsapp', 'facebook', 'twitter', 'instagram', 'youtube', 'video', 'status', ''];
+    protected $fillable = ['government_id', 'zone_id', 'work_from', 'work_to', 'name', 'description', 'address', 'email', 'photo', 'cover', 'mobile', 'whatsapp', 'facebook', 'twitter', 'instagram', 'youtube', 'video', 'status', ''];
 
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
-
+        return $this->belongsToMany(Category::class, 'category_stores', 'store_id', 'category_id');
     }//end function
 
 

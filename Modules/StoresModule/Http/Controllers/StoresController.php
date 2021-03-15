@@ -5,6 +5,7 @@ namespace Modules\StoresModule\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\AreaModule\Entities\Government;
 use Modules\CommonModule\Helper\upload;
 use Modules\StoresModule\Entities\AlbumStore;
 use Modules\StoresModule\Entities\Store;
@@ -53,10 +54,10 @@ class StoresController extends Controller
             })
             ->addColumn('category', function ($row) {
 
-                if (isset($row->category_id)) {
-                    return '<a href="' . route('categories.edit', $row->category_id) . '">' . $row->category->name . '</a>';
+                if (isset($row->category)) {
+                    return '<a href="javascript:">' . str_replace('"', '', $row->category->pluck('name')) . '</a>';
                 } else {
-                    return " Category";
+                    return "Category";
                 }
             })
 //            ->addColumn('status', function ($row) {
@@ -96,8 +97,9 @@ class StoresController extends Controller
     public function create()
     {
         $title = 'المحلات';
+        $governments = Government::all();
         $categories = $this->category->getParentCategories();
-        return view('storesmodule::stores.create', compact('categories', 'title'));
+        return view('storesmodule::stores.create', compact('categories', 'title', 'governments'));
     }
 
     /**
@@ -116,7 +118,8 @@ class StoresController extends Controller
 
     public function uploadAlbum(Request $request)
     {
-        $this->uploadAlbums(AlbumStore::class, Store::class, $request->store_id, $request->file, 'album');
+        $model = $this->uploadAlbums(Store::class, $request->store_id);
+        $this->store->albumUpload($model, $request->file, 'album');
     }//end function
 
     public function removeAlbumPhoto(Request $request)
@@ -130,6 +133,14 @@ class StoresController extends Controller
      * @param int $id
      * @return Renderable
      */
+
+    public function getZone(Request $request)
+    {
+        $gov = Government::with('zones')->findOrFail($request->id);
+        return response()->json(['zones' => $gov->zones], 200);
+
+    }//end function
+
     public function show($id)
     {
         return view('storesmodule::stores.show');
@@ -144,8 +155,9 @@ class StoresController extends Controller
     {
         $title = 'المحلات';
         $store = $this->store->find($id);
+        $governments = Government::all();
         $categories = $this->category->getParentCategories();
-        return view('storesmodule::stores.edit', compact('categories', 'title', 'store'));
+        return view('storesmodule::stores.edit', compact('categories', 'title', 'store', 'governments'));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Modules\StoresModule\Helper;
 
+use Illuminate\Support\Str;
 use Modules\CommonModule\Helper\upload;
 use Modules\StoresModule\Entities\AlbumStore;
 use Modules\StoresModule\Entities\Store;
@@ -24,12 +25,13 @@ class StoreRepo implements StoreInterface
 
     public function find($id)
     {
-        return $this->model->with('album')->find($id);
+        return $this->model->with('album', 'category')->find($id);
     }
 
 
     public function create($data)
     {
+
         if (isset($data['photo'])) {
 
             $name = $this->upload($data['photo'], 'stores');
@@ -44,7 +46,9 @@ class StoreRepo implements StoreInterface
 
             $data['status'] = 'close';
         }
+
         $store = $this->model->create($data);
+        $store->category()->sync($data['category_id']);
         return $store;
     }
 
@@ -71,9 +75,32 @@ class StoreRepo implements StoreInterface
         }
 
         $store->update($data);
+        $store->category()->sync($data['category_id']);
 
 
     }//end function
+
+    public function albumUpload($model, $files, $folder)
+    {
+        $plural_model = Str::plural(lcfirst(class_basename($model))); /*to get the plural name of model like stores*/
+        $model_id = lcfirst(class_basename($model)); /*to get model column like store_id*/
+
+        foreach ($files as $file) {
+
+            $name = $this->upload($file, $plural_model, $folder);
+            $model->album()->create([
+                $model_id . '_id' => $model['id'],
+                'photo' => $name,
+                'size' => $file->getSize(),
+                'mime_type' => $file->getClientOriginalextension(),
+                'name' => $file->getClientOriginalName(),
+            ]);
+
+        }
+
+
+    }//end function
+
 
     public function delete($data)
     {

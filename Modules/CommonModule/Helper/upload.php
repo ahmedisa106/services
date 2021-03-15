@@ -2,38 +2,20 @@
 
 namespace Modules\CommonModule\Helper;
 
-use Illuminate\Support\Str;
-
 trait upload
 {
     public function upload($request_photo, $model_name, $folder = null)
     {
         $name = uniqid() . '.' . $request_photo->getClientOriginalName();
-        $request_photo->move('images/' . $model_name . '/' . $folder, $name);
+        $request_photo->move(public_path('images/' . $model_name . '/' . $folder), $name);
         return $name;
 
     }//end function
 
-    public function uploadAlbums($albumModel, $model, $id, $files, $folder)
+    public function uploadAlbums($model, $id)
     {
-
         $model = $model::find($id);
-        $plural_model = Str::plural(lcfirst(class_basename($model))); /*to get the plural name of model like stores*/
-        $model_id = lcfirst(class_basename($model)); /*to get model column like store_id*/
-        $albumModel::where($model_id . '_id', $id)->get();
-        /*delete old Album*/
-        foreach ($files as $file) {
-
-            $name = $this->upload($file, $plural_model, $folder);
-            $model->album()->create([
-                $model_id . '_id' => $model['id'],
-                'photo' => $name,
-                'size' => $file->getSize(),
-                'mime_type' => $file->getClientOriginalextension(),
-                'name' => $file->getClientOriginalName(),
-            ]);
-
-        }
+        return $model;
 
     }//end function
 
@@ -48,7 +30,8 @@ trait upload
 
     public function deleteOldPhoto($request_photo)
     {
-        $photo = str_replace('http://localhost/services/public/', '', $request_photo);
+        $photo = str_replace('http://localhost/services/', '', $request_photo);
+
         \Illuminate\Support\Facades\File::delete(public_path($photo));
 
     }//end function
