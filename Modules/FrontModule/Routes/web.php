@@ -11,6 +11,18 @@
 |
 */
 
-Route::prefix('')->group(function () {
-    Route::get('/', 'FrontModuleController@index');
+use Illuminate\Support\Facades\Route;
+
+
+Route::group(['prefix' => '', 'middleware' => 'web'], function () {
+
+    Route::get('/', 'FrontController@index')->name('front.index');
+    Route::get('/categories', 'FrontController@categories')->name('front.categories');
+    Route::get('/categories/{id}/show', 'FrontController@show_category')->name('front.getCategory');
+    Route::get('/stores/{id}/show', 'FrontController@show_store')->name('front.getStore');
+
+    Route::get('/stores/add-new', 'FrontController@addStore')->name('front.addStore');
+
+    Route::get('/search', 'FrontController@search')->name('front.search');
 });
+

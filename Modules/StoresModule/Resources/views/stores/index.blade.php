@@ -2,14 +2,8 @@
 
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{aurl('')}}/app-assets/vendors/css/tables/datatable/datatables.min.css">
-    {{--    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">--}}
-
-
 @endpush
 @section('content')
-
-
-
     <section id="file-export">
         <div class="row">
             <div class="col-12">
@@ -42,7 +36,7 @@
                             <form id="form_data" action="{{route('stores.deleteAll')}}" method="post">
 
                                 @csrf
-                                <table id="stores_table" class="table table-striped table-bordered file-export text-center">
+                                <table id="stores_table" class="table table-striped table-bordered file-export text-center nowrap" style="width: 100%">
 
 
                                     <thead>
@@ -153,6 +147,7 @@
     <script>
 
         $(document).ready(function () {
+
             $('#stores_table').DataTable({
                 dom: 'lBfrtip',
                 buttons: [
@@ -164,6 +159,9 @@
                 "lengthMenu": [[25, 50, -1], [25, 50, "All"]],
                 "processing": true,
                 "serverSide": true,
+
+                responsive: true,
+
 
                 "ajax": {
                     "url": "{{route('stores.dataTable')}}",
@@ -182,6 +180,7 @@
                 ],
                 'language': {!! yajra_lang() !!}
             });
+
 
         });
     </script>

@@ -55,7 +55,15 @@ class StoresController extends Controller
             ->addColumn('category', function ($row) {
 
                 if (isset($row->category)) {
-                    return '<a href="javascript:">' . str_replace('"', '', $row->category->pluck('name')) . '</a>';
+
+
+                    foreach ($row->category->pluck('name') as $cat) {
+                        $array[] = ' ' . $cat . ' ';
+
+                    }
+                    return $array;
+
+
                 } else {
                     return "Category";
                 }
@@ -98,8 +106,7 @@ class StoresController extends Controller
     {
         $title = 'المحلات';
         $governments = Government::all();
-        $categories = $this->category->getParentCategories();
-        return view('storesmodule::stores.create', compact('categories', 'title', 'governments'));
+        return view('storesmodule::stores.create', compact('title', 'governments'));
     }
 
     /**
@@ -156,8 +163,8 @@ class StoresController extends Controller
         $title = 'المحلات';
         $store = $this->store->find($id);
         $governments = Government::all();
-        $categories = $this->category->getParentCategories();
-        return view('storesmodule::stores.edit', compact('categories', 'title', 'store', 'governments'));
+
+        return view('storesmodule::stores.edit', compact('title', 'store', 'governments'));
     }
 
     /**

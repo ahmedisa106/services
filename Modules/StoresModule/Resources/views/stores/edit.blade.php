@@ -239,9 +239,9 @@
                                             <select name="category_id[]" class="select2-rtl select2  form-control" multiple id="category">
                                                 <optgroup label="">
 
-                                                    @forelse($categories as $index => $category)
+                                                    @forelse($categories as $category)
 
-                                                        <option value="{{$index}}" {{in_array($index,$store->category->pluck('id')->toArray())?'selected':'' }}>{{$category}}</option>
+                                                        <option value="{{$category->id}}" {{in_array($category->id,$store->category->pluck('id')->toArray())?'selected':'' }}>{{$category->name}}</option>
 
                                                     @empty
                                                         <option selected value="">لا يوجد أقسام حاليا</option>

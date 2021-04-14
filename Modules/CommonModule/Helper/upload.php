@@ -30,7 +30,9 @@ trait upload
 
     public function deleteOldPhoto($request_photo)
     {
-        $photo = str_replace('http://localhost/services/', '', $request_photo);
+
+        $photo = str_replace('http://localhost/services/public', '', $request_photo);
+
 
         \Illuminate\Support\Facades\File::delete(public_path($photo));
 

@@ -218,9 +218,10 @@
                                             <select name="category_id[]" class="select2-rtl select2  form-control" multiple id="category">
                                                 <optgroup label="">
 
-                                                    @forelse($categories as $index=>$category)
 
-                                                        <option value="{{$index}}">{{$category}}</option>
+                                                    @forelse($categories as $category)
+
+                                                        <option value="{{$category->id}}">{{$category->name}}</option>
 
                                                     @empty
                                                         <option selected value="">لا يوجد أقسام حاليا</option>

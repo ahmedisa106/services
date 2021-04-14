@@ -2,8 +2,9 @@
 
 namespace Modules\FrontModule\Providers;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
+use Modules\StoresModule\Entities\Category;
 
 class FrontModuleServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,18 @@ class FrontModuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        if (Schema::hasTable('categories')) {
+
+            $categories = Category::with('stores')->getparents()->get();
+
+            \Illuminate\Support\Facades\View::composer('*', function ($view) use ($categories) {
+
+                $view->with('categories', $categories);
+
+
+            });
+        }
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();

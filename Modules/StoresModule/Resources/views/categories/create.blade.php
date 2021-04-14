@@ -110,8 +110,19 @@
                                         </div>
                                     </div>
                                 </fieldset>
-                                <h6></h6>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="icon">
+                                            الايكون :
 
+                                        </label>
+
+                                        <span class="danger">*</span>
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" name="icon" id="icon">
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-12">
@@ -123,8 +134,8 @@
                                         <select name="parent_id" class="select2-rtl  form-control " id="select2-rtl-multi">
                                             <optgroup label="إختر قسم ">
                                                 <option value="0">قسم رئيسي</option>
-                                                @foreach($categories as $index=>$category)
-                                                    <option value="{{$index}}">{{$category}}</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{$category->id}}">{{$category->name}}</option>
                                                 @endforeach
                                                 {{--End Foreach--}}
 

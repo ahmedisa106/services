@@ -18,7 +18,7 @@ class CategoryRepo implements CategoryInterface
 
     public function getALl()
     {
-        return $this->model->get();
+        return $this->model->with('stores')->get();
     }
 
     public function find($id)
@@ -71,6 +71,7 @@ class CategoryRepo implements CategoryInterface
             $data['photo'] = $name;
         }
         if ($request->hasFile('cover')) {
+
             $this->deleteOldPhoto($cat->cover);
             $name = $this->upload($request->cover, 'categories');
             $data['cover'] = $name;
