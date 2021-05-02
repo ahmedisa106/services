@@ -126,6 +126,8 @@ class StoresController extends Controller
     public function uploadAlbum(Request $request)
     {
         $model = $this->uploadAlbums(Store::class, $request->store_id);
+
+
         $this->store->albumUpload($model, $request->file, 'album');
     }//end function
 

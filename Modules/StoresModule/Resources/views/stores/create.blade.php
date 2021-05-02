@@ -450,14 +450,7 @@
                             $('#store_id').val(response.store_id);
                             myDropzone.processQueue();
                         }
-                        var message = 'تم حفظ البيانات بنجاح'
 
-                        toastr.success(message, '', {positionClass: 'toast-bottom-left'})
-
-                        setTimeout(function () {
-
-                            window.location.href = '../stores';
-                        }, 800)
 
                     },
 
@@ -516,8 +509,14 @@
             formData.append('store_id', ids);
         });
         myDropzone.on('completemultiple', function () {
-            // var msgs = "تم رفع الصور بنجاح";
-            // toastr.success(msgs);
+            var message = 'تم حفظ البيانات بنجاح'
+
+            toastr.success(message, '', {positionClass: 'toast-bottom-left'})
+
+            setTimeout(function () {
+
+                window.location.href = '../stores';
+            }, 200)
         });
     </script>
 

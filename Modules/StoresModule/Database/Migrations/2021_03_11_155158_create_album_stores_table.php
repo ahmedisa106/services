@@ -18,7 +18,7 @@ class CreateAlbumStoresTable extends Migration
             $table->string('photo');
             $table->unsignedInteger('store_id');
             $table->text('name');
-            $table->integer('size');
+            $table->integer('size')->nullable();
             $table->string('mime_type');
 
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');

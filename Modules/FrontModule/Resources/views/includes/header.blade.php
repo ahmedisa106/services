@@ -52,7 +52,7 @@
                                     <input type="search" placeholder="ما الذي تبحث عنه؟">
                                     <div class="instant-results">
                                         <ul class="instant-results-list">
-                                            @foreach($categories->random(5) as $index=>$category)
+                                            @foreach($categories->take(5) as $index=>$category)
                                                 <li><a href="{{route('front.getCategory',$category->id)}}" class="d-flex align-items-center"><span class="icon-element bg-{{$index}} mr-2"><i class="{{$category->icon}}"></i></span>{{$category->name}}</a></li>
 
                                             @endforeach
