@@ -16,7 +16,8 @@
                         <li class="breadcrumb-item"><a href="{{url('/admin-panel/categories')}}">الاقسام</a>
                         </li>
 
-                        <li class="breadcrumb-item active"><a href="#">إضافه قسم جديد</a>
+                        <li class="breadcrumb-item active">
+                            <a href="javascript;">إضافه قسم جديد</a>
                         </li>
                     </ol>
                 </div>

@@ -85,13 +85,13 @@ class StoreRepo implements StoreInterface
         $plural_model = Str::plural(lcfirst(class_basename($model))); /*to get the plural name of model like stores*/
         $model_id = lcfirst(class_basename($model)); /*to get model column like store_id*/
 
-        foreach ($files as $file) {
 
+        foreach ($files as $file) {
             $name = $this->upload($file, $plural_model, $folder);
             $model->album()->create([
                 $model_id . '_id' => $model['id'],
                 'photo' => $name,
-                'size' => $file->getSize(),
+                'size' => 10,
                 'mime_type' => $file->getClientOriginalextension(),
                 'name' => $file->getClientOriginalName(),
             ]);
