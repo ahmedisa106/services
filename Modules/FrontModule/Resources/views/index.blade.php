@@ -87,7 +87,7 @@
                         <h5 class="highlighted__title">مجرد النظر حولك؟ دعنا نقترح <br>عليك شيئًا ساخنًا ويحدث!</h5>
                     </div>
                     <div class="highlight-lists d-flex justify-content-center mt-4">
-                        @foreach($categories->random(5) as $index=> $category)
+                        @foreach($categories->take(5) as $index=> $category)
                             <div class="hero-category-item">
                                 <a href="{{route('front.getCategory',$category->id)}}" class="d-block hero-cat-link hover-y">
                                     <span class="icon-element bg-{{$index+1}} mx-auto"><i class="{{$category->icon}}"></i></span>
@@ -161,7 +161,7 @@
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->
             <div class="row mt-5">
-                @foreach($categories->random(8) as $index=> $category)
+                @foreach($categories->take(8) as $index=> $category)
                     <div class="col-lg-3 responsive-column">
                         <div class="category-item overflow-hidden">
 
@@ -560,7 +560,7 @@
 
 
                                         <li class="d-flex align-items-center">
-                                            @foreach($store->category->random(1) as $cat)
+                                            @foreach($store->category->take(1) as $cat)
                                                 <i class="{{$cat->icon}} mr-1 listing-icon"></i> <a href="{{route('front.getCategory',$cat->id)}}" class="listing-cat-link"> {{$cat->name}} </a>
 
                                             @endforeach
