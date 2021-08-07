@@ -4,7 +4,10 @@ namespace Modules\FrontModule\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Modules\AreaModule\Entities\Government;
+use Modules\AreaModule\Entities\Zone;
 use Modules\StoresModule\Entities\Category;
+use Modules\StoresModule\Entities\Store;
 
 class FrontModuleServiceProvider extends ServiceProvider
 {
@@ -29,10 +32,16 @@ class FrontModuleServiceProvider extends ServiceProvider
         if (Schema::hasTable('categories')) {
 
             $categories = Category::with('stores')->getparents()->get();
+            $cat_stores = Store::with('category')->where('approval', 1)->get();
+            $governments = Government::with('zones')->get();
+            $zones = Zone::get();
 
-            \Illuminate\Support\Facades\View::composer('*', function ($view) use ($categories) {
+            \Illuminate\Support\Facades\View::composer('*', function ($view) use ($categories, $governments, $zones, $cat_stores) {
 
                 $view->with('categories', $categories);
+                $view->with('cat_stores', $cat_stores);
+                $view->with('governments', $governments);
+                $view->with('zones', $zones);
 
 
             });

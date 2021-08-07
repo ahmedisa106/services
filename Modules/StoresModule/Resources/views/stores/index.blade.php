@@ -57,6 +57,7 @@
                                         <th>الصوره</th>
                                         <th>القسم</th>
                                         <th>الحاله</th>
+                                        <th>التفعيل</th>
                                         <th>العمليات</th>
 
                                     </tr>
@@ -174,6 +175,7 @@
                     {data: 'photo', name: 'photo'},
                     {data: 'category', name: 'category'},
                     {data: 'status', name: 'status'},
+                    {data: 'approval', name: 'approval'},
 
                     {data: 'operations', name: 'operations', orderable: false, searchable: false},
 

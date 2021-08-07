@@ -24,3 +24,4 @@
 <script src="{{asset('assets/front')}}/js/jquery.MultiFile.min.js"></script>
 <script src="{{asset('assets/front')}}/js/copy-text-script.js"></script>
 
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=610bdfeca041d30013b858b9&product=sticky-share-buttons" async="async"></script>

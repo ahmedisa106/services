@@ -90,7 +90,7 @@
                         @foreach($categories->take(5) as $index=> $category)
                             <div class="hero-category-item">
                                 <a href="{{route('front.getCategory',$category->id)}}" class="d-block hero-cat-link hover-y">
-                                    <span class="icon-element bg-{{$index+1}} mx-auto"><i class="{{$category->icon}}"></i></span>
+                                    <span class="icon-element bg-{{$index+1}} mx-auto"><i class="la la-{{$category->icon}}"></i></span>
                                     {{$category->name}}
                                 </a>
                             </div>
@@ -154,8 +154,7 @@
                         </div>
                         <h2 class="sec__title">الفئات الأكثر شهرة</h2>
                         <p class="sec__desc">
-                            كرة القدم شرب الوادي لسحب القدر. قسم التصوير المجاني Tellus <br>
-                            بواسطة feugiat. الآن هذا التنورة المتخصصين
+
                         </p>
                     </div><!-- end section-heading -->
                 </div><!-- end col-lg-12 -->
@@ -165,11 +164,11 @@
                     <div class="col-lg-3 responsive-column">
                         <div class="category-item overflow-hidden">
 
-                            <img src="{{asset('assets/front')}}/images/img-loading.png" data-src="{{$category->photo ?? asset("assets/front/images/cat-img-2.jpg") }}" style="max-height: 175px;" alt="category-image" class="cat-img lazy">
+                            <img src="{{asset('assets/front')}}/images/img-loading.png" data-src="{{$category->photo ?? asset("assets/front/images/cat-img-2.jpg") }}" style="height: 175px;" alt="category-image" class="cat-img lazy">
                             <div class="category-content d-flex align-items-center justify-content-center">
                                 <a href="{{route('front.getCategory',$category->id)}}" class="category-link d-flex flex-column justify-content-center w-100 h-100">
                                     <div class="icon-element mb-3 mx-auto">
-                                        <span class="{{$category->icon}}"></span>
+                                        <span class="la la-{{$category->icon}}"></span>
                                     </div>
                                     <div class="cat-content">
                                         <h4 class="cat__title mb-3">{{$category->name}}</h4>
@@ -222,131 +221,55 @@
                         </div>
                         <h2 class="sec__title">تحقق من أحدث أعمالنا</h2>
                         <p class="sec__desc">
-                            كرة القدم شرب الوادي لسحب القدر. قسم التصوير المجاني Tellus <br>
-                            بواسطة feugiat. الآن هذا التنورة المتخصصين
+                            <br>
+
                         </p>
                     </div><!-- end section-heading -->
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->
             <div class="row padding-top-60px">
-                <div class="col-lg-4 responsive-column">
-                    <div class="card-item">
-                        <div class="card-image">
-                            <a href="listing-details.html" class="d-block">
-                                <img src="{{asset('assets/front')}}/images/img-loading.png" data-src="{{asset('assets/front')}}/images/img1.jpg" class="card__img lazy" alt="">
-                            </a>
-                        </div>
-                        <div class="card-content">
-                            <a href="#" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top" title="TechyDevs">
-                                <img src="{{asset('assets/front')}}/images/photoshop.png" alt="author-img">
-                            </a>
-                            <h4 class="card-title pt-3">
-                                <a href="listing-details.html">مطعم روما الإيطالي</a>
-                                <i class="la la-check-circle ml-1" data-toggle="tooltip" data-placement="top" title="Claimed"></i>
-                            </h4>
-                            <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop Avenue, New York</a></p>
-                            <ul class="listing-meta d-flex align-items-center">
-                                <li class="d-flex align-items-center">
-                                    <span class="rate flex-shrink-0">4.7</span>
-                                    <span class="rate-text">عدد التعليقات 5</span>
-                                </li>
-                                <li>
+                @foreach($stores->random(3) as $store)
+                    <div class="col-lg-4 responsive-column">
+                        <div class="card-item">
+                            <div class="card-image">
+                                <a href="{{route('front.getStore',$store->id)}}" class="d-block">
+                                    <img src="{{asset('assets/front')}}/images/img-loading.png" style="height: 270px" data-src="{{$store->cover}}" class="card__img lazy" alt="">
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <a href="{{route('front.getStore',$store->id)}}" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top" title="TechyDevs">
+                                    <img src="{{$store->photo}}" alt="author-img">
+                                </a>
+                                <h4 class="card-title pt-3">
+                                    <a href="{{route('front.getStore',$store->id)}}">{{$store->name}}</a>
+                                    <i class="la la-check-circle ml-1" data-toggle="tooltip" data-placement="top" title="Claimed"></i>
+                                </h4>
+                                <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>{{$store->address}}</a></p>
+                                <ul class="listing-meta d-flex align-items-center">
+                                    <li class="d-flex align-items-center">
+                                        <span class="rate flex-shrink-0">4.7</span>
+                                        <span class="rate-text">عدد التعليقات 5</span>
+                                    </li>
+                                    <li>
                                 <span class="price-range" data-toggle="tooltip" data-placement="top" title="Pricey">
-                                    <strong class="font-weight-medium">$</strong>
-                                    <strong class="font-weight-medium">$</strong>
-                                    <strong class="font-weight-medium">$</strong>
+
                                 </span>
-                                </li>
-                                <li class="d-flex align-items-center">
-                                    <i class="la la-cutlery mr-1 listing-icon"></i><a href="#" class="listing-cat-link">مطعم</a>
-                                </li>
-                            </ul>
-                            <ul class="info-list padding-top-20px">
-                                <li><span class="la la-calendar-check-o icon"></span>
-                                    افتتح قبل أيام قليلة
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- end card-item -->
-                </div><!-- end col-lg-4 -->
-                <div class="col-lg-4 responsive-column">
-                    <div class="card-item">
-                        <div class="card-image">
-                            <a href="listing-details.html" class="d-block">
-                                <img src="{{asset('assets/front')}}/images/img-loading.png" data-src="{{asset('assets/front')}}/images/img2.jpg" class="card__img lazy" alt="">
-                            </a>
-                        </div>
-                        <div class="card-content">
-                            <a href="#" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top" title="TechyDevs">
-                                <img src="{{asset('assets/front')}}/images/sketch.png" alt="author-img">
-                            </a>
-                            <h4 class="card-title pt-3">
-                                <a href="listing-details.html">زلابية بيبي تشاينا بيسترو</a>
-                            </h4>
-                            <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop Avenue, New York</a></p>
-                            <ul class="listing-meta d-flex align-items-center">
-                                <li class="d-flex align-items-center">
-                                    <span class="rate flex-shrink-0">4.7</span>
-                                    <span class="rate-text">عدد التعليقات 5</span>
-                                </li>
-                                <li>
-                                <span class="price-range" data-toggle="tooltip" data-placement="top" title="Moderate">
-                                    <strong class="font-weight-medium">$</strong>
-                                    <strong class="font-weight-medium">$</strong>
-                                </span>
-                                </li>
-                                <li class="d-flex align-items-center">
-                                    <i class="la la-cutlery mr-1 listing-icon"></i><a href="#" class="listing-cat-link">مطعم</a>
-                                </li>
-                            </ul>
-                            <ul class="info-list padding-top-20px">
-                                <li><span class="la la-calendar-check-o icon"></span>
-                                    افتتح منذ 5 أسابيع
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- end card-item -->
-                </div><!-- end col-lg-4 -->
-                <div class="col-lg-4 responsive-column">
-                    <div class="card-item">
-                        <div class="card-image">
-                            <a href="listing-details.html" class="d-block">
-                                <img src="{{asset('assets/front')}}/images/img-loading.png" data-src="{{asset('assets/front')}}/images/img3.jpg" class="card__img lazy" alt="">
-                            </a>
-                        </div>
-                        <div class="card-content">
-                            <a href="#" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top" title="TechyDevs">
-                                <img src="{{asset('assets/front')}}/images/listing-logo.jpg" alt="author-img">
-                            </a>
-                            <h4 class="card-title pt-3">
-                                <a href="listing-details.html">يربا بوينا فريش ميكس</a>
-                                <i class="la la-check-circle ml-1" data-toggle="tooltip" data-placement="top" title="Claimed"></i>
-                            </h4>
-                            <p class="card-sub"><a href="#"><i class="la la-map-marker mr-1 text-color-2"></i>Bishop Avenue, New York</a></p>
-                            <ul class="listing-meta d-flex align-items-center">
-                                <li class="d-flex align-items-center">
-                                    <span class="rate flex-shrink-0">4.7</span>
-                                    <span class="rate-text">عدد التعليقات 5</span>
-                                </li>
-                                <li>
-                                <span class="price-range" data-toggle="tooltip" data-placement="top" title="Pricey">
-                                    <strong class="font-weight-medium">$</strong>
-                                    <strong class="font-weight-medium">$</strong>
-                                    <strong class="font-weight-medium">$</strong>
-                                </span>
-                                </li>
-                                <li class="d-flex align-items-center">
-                                    <i class="la la-cutlery mr-1 listing-icon"></i><a href="#" class="listing-cat-link">مطعم</a>
-                                </li>
-                            </ul>
-                            <ul class="info-list padding-top-20px">
-                                <li><span class="la la-calendar-check-o icon"></span>
-                                    افتتح منذ 3 أسابيع
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- end card-item -->
-                </div><!-- end col-lg-4 -->
+                                    </li>
+                                    <li class="d-flex align-items-center">
+                                        <i class="la la-{{$store->category->first()->icon}} mr-1 listing-icon"></i><a href="{{route('front.getCategory',$store->category()->first()->id)}}" class="listing-cat-link">{{$store->category->first()->name}}</a>
+                                    </li>
+                                </ul>
+                                <ul class="info-list padding-top-20px">
+                                    <li><span class="la la-calendar-check-o icon"></span>
+                                        {{$store->created_at->diffForHumans()}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div><!-- end card-item -->
+                    </div><!-- end col-lg-4 -->
+
+                @endforeach
+
             </div><!-- end row -->
             <div class="more-link-wrap text-right">
                 <a href="#" class="btn-text font-weight-medium">عرض المزيد من الأعمال الساخنة والجديدة <i class="la la-arrow-right icon"></i></a>
@@ -536,10 +459,10 @@
             <div class="row padding-top-60px">
                 <div class="col-lg-12">
                     <div class="card-carousel owl-trigger-action">
-                        @foreach($stores as $store)
+                        @foreach($stores->random(6) as $store)
                             <div class="card-item border border-color">
                                 <div class="card-image">
-                                    <a href="listing-details.html" class="d-block">
+                                    <a href="{{route('front.getStore',$store->id)}}" class="d-block">
                                         <img src="{{$store->cover}}" style=" height: 246px; width: 370px" class="card__img" alt="">
                                         <span class="badge {{$store->status==='مغلق'? 'bg-10':''}}">{{$store->status}} الان</span>
                                     </a>
@@ -548,7 +471,7 @@
                             </span>
                                 </div>
                                 <div class="card-content">
-                                    <a href="#" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top" title="TechyDevs">
+                                    <a href="{{route('front.getStore',$store->id)}}" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top" title="TechyDevs">
                                         <img src="{{$store->photo}}" alt="author-img">
                                     </a>
                                     <h4 class="card-title pt-3">
@@ -561,22 +484,32 @@
 
                                         <li class="d-flex align-items-center">
                                             @foreach($store->category->take(1) as $cat)
-                                                <i class="{{$cat->icon}} mr-1 listing-icon"></i> <a href="{{route('front.getCategory',$cat->id)}}" class="listing-cat-link"> {{$cat->name}} </a>
+                                                <i class="la la-{{$cat->icon}} mr-1 listing-icon"></i> <a href="{{route('front.getCategory',$cat->id)}}" class="listing-cat-link"> {{$cat->name}} </a>
 
                                             @endforeach
                                             {{--End Foreach--}}
                                         </li>
                                     </ul>
                                     <ul class="info-list padding-top-20px">
-                                        <li><span class="la la-link icon"></span>
-                                            <a target="_blank" href="mailTo:{{$store->email}}"> {{$store->email}}</a>
-                                        </li>
-                                        <li><span class="la la-whatsapp icon"></span>
-                                            <a target="_blank" href="https://api.whatsapp.com/send?phone={{$store->whatsapp}}&amp">{{$store->whatsapp}}</a>
-                                        </li>
-                                        <li><span class="la la-phone icon"></span>
-                                            {{$store->mobile}}
-                                        </li>
+                                        @if ($store->email)
+                                            <li><span class="la la-link icon"></span>
+                                                <a target="_blank" href="mailTo:{{$store->email}}"> {{$store->email}}</a>
+                                            </li>
+                                        @endif
+
+                                        @if ($store->whatsapp)
+                                            <li><span class="la la-whatsapp icon"></span>
+                                                <a target="_blank" href="https://api.whatsapp.com/send?phone={{$store->whatsapp}}&amp">{{$store->whatsapp}}</a>
+                                            </li>
+                                        @endif
+
+                                        @if ($store->mobile)
+                                            <li>
+                                                <span class="la la-phone icon"></span>
+                                                <a href="tel:{{$store->mobile}}" target="_blank">{{$store->mobile}}</a>
+                                            </li>
+                                        @endif
+
                                     </ul>
                                 </div>
                             </div><!-- end card-item -->
@@ -771,795 +704,5 @@
         END FUN-FACT AREA
     ================================= -->
 
-    <!-- ================================
-        START HIW AREA
-    ================================= -->
-    <section class="hiw-area section--padding text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-heading">
-                        <div class="section-icon gradient-icon mb-3 mx-auto">
-                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="svg-gradient5">
-                                        <stop offset="5%" stop-color="#ff6b6b"/>
-                                        <stop offset="95%" stop-color="#ffbb3d"/>
-                                    </linearGradient>
-                                </defs>
-                                <g>
-                                    <path d="m203.556 345.012 70.71-212.133c2.619-7.859-1.628-16.354-9.487-18.974-7.858-2.619-16.354 1.628-18.974 9.487l-70.71 212.133c-2.619 7.859 1.628 16.354 9.487 18.974 1.573.524 3.173.773 4.745.773 6.28.001 12.133-3.974 14.229-10.26z"/>
-                                    <path d="m309.533 279.203c24.813 0 45-20.187 45-45s-20.187-45-45-45-45 20.187-45 45 20.187 45 45 45zm0-60c8.271 0 15 6.729 15 15s-6.729 15-15 15-15-6.729-15-15 6.729-15 15-15z"/>
-                                    <path d="m139.827 189.203c-24.813 0-45 20.187-45 45s20.187 45 45 45 45-20.187 45-45-20.186-45-45-45zm0 60c-8.271 0-15-6.729-15-15s6.729-15 15-15 15 6.729 15 15-6.728 15-15 15z"/>
-                                    <path
-                                        d="m509 186-52.307-69.743 2.041-14.283c.667-4.674-.904-9.39-4.243-12.728l-31.82-31.82 31.819-31.82c5.858-5.857 5.858-15.355 0-21.213-5.857-5.857-15.355-5.857-21.213 0l-31.819 31.82-31.82-31.82c-3.338-3.339-8.054-4.905-12.728-4.243l-148.493 21.213c-3.213.459-6.19 1.948-8.485 4.243l-183.848 183.848c-21.445 21.444-21.445 56.338 0 77.782l155.563 155.564c3.182 3.182 6.666 5.881 10.353 8.118v6.082c0 30.327 24.673 55 55 55h220c30.327 0 55-24.673 55-55v-262c0-3.245-1.053-6.404-3-9zm-471.703 80.023c-9.748-9.748-9.748-25.608 0-35.356l180.312-180.312 136.118-19.445 26.517 26.517-21.213 21.213-10.607-10.607c-5.857-5.857-15.355-5.857-21.213 0s-5.858 15.355 0 21.213l42.427 42.427c2.929 2.929 6.768 4.394 10.606 4.394s7.678-1.465 10.606-4.394c5.858-5.857 5.858-15.355 0-21.213l-10.607-10.607 21.213-21.213 26.517 26.517-19.446 136.118-180.311 180.312c-4.722 4.722-11 7.322-17.678 7.322s-12.956-2.601-17.678-7.322zm444.703 190.977c0 13.785-11.215 25-25 25h-220c-13.164 0-23.976-10.228-24.925-23.154 13.567-.376 27.022-5.714 37.353-16.046l183.848-183.848c2.295-2.295 3.784-5.272 4.243-8.485l13.173-92.21 31.308 41.743z"/>
-                                </g>
-                            </svg>
-                        </div>
-                        <h2 class="sec__title">ماذا نقدم</h2>
-                        <p class="sec__desc">
-                            كرة القدم شرب الوادي لسحب القدر. قسم التصوير المجاني Tellus <br>
-                            بواسطة feugiat. الآن هذا التنورة المتخصصين
-                        </p>
-                    </div><!-- end section-heading -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-            <div class="row padding-top-60px">
-                <div class="col-lg-3 responsive-column">
-                    <div class="info-box info-box-layout-2">
-                        <div class="info-icon bg-gradient-1">
-                            <span class="la la-map"></span>
-                        </div><!-- end info-icon-->
-                        <div class="info-content">
-                            <h4 class="info__title">أماكن رائعة</h4>
-                            <div class="stroke-shape bg-gradient-1"></div>
-                            <p class="info__desc pt-3">
-                                كوفنتري مدينة لها آلاف السنين من التاريخ ولديها الكثير
-                            </p>
-                        </div><!-- end info-content -->
-                    </div><!-- end info-box -->
-                </div><!-- end col-lg-4 -->
-                <div class="col-lg-3 responsive-column">
-                    <div class="info-box info-box-layout-2">
-                        <div class="info-icon bg-gradient-2">
-                            <span class="la la-cutlery"></span>
-                        </div><!-- end info-icon-->
-                        <div class="info-content">
-                            <h4 class="info__title">مطاعم رائعة</h4>
-                            <div class="stroke-shape bg-gradient-2"></div>
-                            <p class="info__desc pt-3">
-                                كوفنتري مدينة لها آلاف السنين من التاريخ ولديها الكثير
-                            </p>
-                        </div><!-- end info-content -->
-                    </div><!-- end info-box -->
-                </div><!-- end col-lg-4 -->
-                <div class="col-lg-3 responsive-column">
-                    <div class="info-box info-box-layout-2">
-                        <div class="info-icon bg-gradient-3">
-                            <span class="la la-hotel"></span>
-                        </div><!-- end info-icon-->
-                        <div class="info-content">
-                            <h4 class="info__title">فنادق رائعة</h4>
-                            <div class="stroke-shape bg-gradient-3"></div>
-                            <p class="info__desc pt-3">
-                                كوفنتري مدينة لها آلاف السنين من التاريخ ولديها الكثير
-                            </p>
-                        </div><!-- end info-content -->
-                    </div><!-- end info-box -->
-                </div><!-- end col-lg-3 -->
-                <div class="col-lg-3 responsive-column">
-                    <div class="info-box info-box-layout-2">
-                        <div class="info-icon bg-gradient-4">
-                            <span class="la la-ellipsis-h"></span>
-                        </div><!-- end info-icon-->
-                        <div class="info-content">
-                            <h4 class="info__title">و أكثر من ذلك بكثير...</h4>
-                            <div class="stroke-shape bg-gradient-4"></div>
-                            <p class="info__desc pt-3">
-                                كوفنتري مدينة لها آلاف السنين من التاريخ ولديها الكثير
-                            </p>
-                        </div><!-- end info-content -->
-                    </div><!-- end info-box -->
-                </div><!-- end col-lg-3 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end hiw-area -->
-    <!-- ================================
-        END HIW AREA
-    ================================= -->
 
-    <!-- ================================
-        START CTA AREA
-    ================================= -->
-    <section class="cta-area padding-bottom-120px">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="cta-content-box">
-                        <div class="row align-items-center">
-                            <div class="col-lg-5">
-                                <div class="cta-img">
-                                    <img class="lazy" src="{{asset('assets/front')}}/images/img-loading.png" data-src="{{asset('assets/front')}}/images/img37.jpg" alt="">
-                                    <div class="cta-img-shape">
-                                        <svg viewBox="0 0 500 150" preserveAspectRatio="none">
-                                            <path d="M627.25,-82.39 C346.22,43.91 512.69,168.25 560.66,205.75 L500.00,150.00 L500.00,0.00 Z" style="stroke: none; fill: #fff;"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="cta-content">
-                                    <div class="section-heading">
-                                        <div class="gradient-icon mb-3">
-                                            <svg viewBox="-4 0 511 511.99964" width="40" xmlns="http://www.w3.org/2000/svg">
-                                                <defs>
-                                                    <linearGradient id="svg-gradient6">
-                                                        <stop offset="5%" stop-color="#ff6b6b"/>
-                                                        <stop offset="95%" stop-color="#ffbb3d"/>
-                                                    </linearGradient>
-                                                </defs>
-                                                <path
-                                                    d="m498.429688 219.339844c-5.308594-8.015625-13.355469-13.539063-22.710938-15.632813 6.035156-11.542969 5.789062-25.945312-1.898438-37.550781-5.46875-8.261719-13.71875-13.597656-22.699218-15.617188 1.601562-3.054687 2.785156-6.351562 3.492187-9.828124 1.960938-9.667969.046875-19.519532-5.402343-27.742188-5.308594-8.019531-13.355469-13.542969-22.710938-15.632812 6.035156-11.542969 5.789062-25.945313-1.898438-37.554688-11.238281-16.972656-34.199218-21.640625-51.175781-10.398438l-36.757812 24.34375c-19.59375-9.9375-40.433594-16.988281-62.0625-21.003906-6.835938-10.378906-14.785157-20.027344-23.683594-28.652344l-15.207031-14.738281c-11.136719-10.796875-28.601563-12.417969-41.53125-3.851562-15.296875 10.128906-19.5 30.816406-9.371094 46.113281.398438.605469.789062 1.214844 1.175781 1.824219-49.847656 10.085937-95.277343 36.539062-128.902343 75.300781-36.488282 42.066406-56.585938 95.941406-56.585938 151.699219 0 10.6875.730469 21.394531 2.175781 31.816406 11.136719 81.019531 65.105469 150.839844 140.839844 182.21875 28.085937 11.640625 57.886719 17.546875 88.5625 17.546875 48.582031 0 95.085937-14.878906 134.488281-43.023438 38.546875-27.539062 67.386719-65.542968 83.40625-109.902343 1.496094-4.132813-.648437-8.699219-4.78125-10.191407-4.136718-1.492187-8.699218.648438-10.191406 4.785157-14.917969 41.308593-41.78125 76.699219-77.691406 102.351562-36.683594 26.207031-79.988282 40.058594-125.230469 40.058594-23.390625 0-46.230469-3.691406-68.089844-10.972656l64.773438-42.894531c.003906-.003907.007812-.003907.011719-.007813.003906 0 .003906-.003906.007812-.007813l53.832031-35.648437h.003907c4.832031-3.203125 8.132812-8.09375 9.289062-13.777344 1.15625-5.683593.03125-11.480469-3.171875-16.3125l-.710937-1.078125 10.457031-6.925781c7.460937-4.941406 16.433593-6.878906 25.269531-5.460937 12.792969 2.054687 25.785156-.757813 36.582031-7.910157l86.734375-57.4375c-.59375 7.523438-1.570312 15.003907-2.933594 22.359375-.804687 4.324219 2.050782 8.480469 6.375 9.28125.488282.09375.980469.136719 1.460938.136719 3.761719 0 7.105469-2.679687 7.816406-6.511719 2.207032-11.871094 3.476563-24.03125 3.804688-36.207031l24.441406-16.1875c8.222656-5.445313 13.835938-13.769531 15.796875-23.433594 1.964844-9.667969.046875-19.519531-5.398437-27.742187zm-177.21875-135.378906-24.324219 16.109374-4.789063-12.902343c-2-5.382813-4.292968-10.660157-6.832031-15.824219 12.339844 3.128906 24.355469 7.347656 35.945313 12.617188zm-252.097657 55.191406c32.316407-37.253906 76.335938-62.296875 124.492188-70.980469 7.726562 18.71875 9.578125 39.632813 4.960937 59.566406l-19.410156 83.855469c-3.050781-3.257812-7.011719-5.503906-11.472656-6.410156-5.6875-1.160156-11.480469-.03125-16.3125 3.171875l-54.980469 36.40625c-.003906 0-.003906 0-.007813.003906 0 0-.003906 0-.003906.003906l-79.296875 52.511719c-.433593-5.59375-.660156-11.230469-.660156-16.863281 0-51.921875 18.714844-102.09375 52.691406-141.265625zm207.191407 250.441406c-.308594 1.515625-1.191407 2.824219-2.484376 3.679688h.003907l-47.28125 31.308593-87.753907-130.871093c-2.449218-3.652344-7.394531-4.625-11.046874-2.175782-3.648438 2.449219-4.625 7.390625-2.175782 11.042969l87.699219 130.796875-67.496094 44.699219c-67.070312-29.335938-115.066406-91.289063-126.605469-163.378907l79.390626-52.402343 9.136718 13.632812c1.539063 2.289063 4.054688 3.527344 6.621094 3.527344 1.523438 0 3.066406-.433594 4.425781-1.347656 3.652344-2.449219 4.628907-7.394531 2.179688-11.046875l-9.074219-13.535156 48.320312-31.894532c1.285157-.855468 2.828126-1.152344 4.34375-.84375 1.515626.308594 2.824219 1.191406 3.679688 2.480469l107.273438 161.984375c.851562 1.285156 1.152343 2.828125.84375 4.34375zm211.921874-145.683594c-1.117187 5.5-4.308593 10.234375-8.988281 13.332032l-27.941406 18.503906c-.007813.003906-.015625.011718-.027344.015625l-99.730469 66.046875c-7.460937 4.941406-16.433593 6.882812-25.269531 5.460937-12.789062-2.050781-25.78125.757813-36.582031 7.910157l-10.457031 6.925781-87.859375-132.667969 22.710937-98.105469c5.847657-25.273437 2.765625-51.894531-8.375-75.085937-.101562-.242188-.210937-.476563-.335937-.707032-2.140625-4.382812-4.570313-8.636718-7.285156-12.738281-5.28125-7.976562-3.089844-18.761719 4.890624-24.046875 6.742188-4.464844 15.851563-3.621094 21.65625 2.007813l15.207032 14.742187c16.449218 15.949219 29.359375 35.730469 37.328125 57.207032l8.28125 22.308593c.015625.042969.03125.078125.046875.117188.019531.050781.042968.105469.0625.15625.058594.136719.113281.261719.171875.367187.160156.335938.335937.667969.546875.984375 2.429687 3.667969 7.367187 4.671875 11.03125 2.242188l84.910156-56.226563c9.65625-6.394531 22.714844-3.742187 29.109375 5.914063s3.742187 22.714843-5.914063 29.109375l-7.371093 4.882812s-.003907 0-.007813.003906l-16.441406 10.890626c-.023438.015624-.039062.03125-.0625.042968-.09375.066406-.183594.128906-.257812.191406-3.398438 2.496094-4.277344 7.242188-1.921876 10.796876 2.425782 3.667968 7.367188 4.671874 11.035157 2.242187l16.453125-10.898437c4.675781-3.089844 10.273437-4.179688 15.769531-3.0625 5.496094 1.117187 10.234375 4.308593 13.328125 8.988281 3.097656 4.675781 4.191406 10.28125 3.074219 15.777343-1.117188 5.5-4.308594 10.234376-8.988281 13.332032l-23.820313 15.777344c-3.667969 2.425781-4.671875 7.363281-2.242187 11.03125 1.53125 2.3125 4.0625 3.566406 6.644531 3.566406 1.507812 0 3.035156-.429688 4.386719-1.324219l3.6875-2.441406 12.757812-8.449219c9.660156-6.394531 22.714844-3.742188 29.109375 5.914062 6.394531 9.660157 3.742187 22.714844-5.914063 29.113282l-11.898437 7.878906c-.0625.039062-.125.082031-.1875.125l-11.734375 7.769531c-3.667969 2.425781-4.671875 7.367188-2.242188 11.035157 1.53125 2.3125 4.0625 3.566406 6.644532 3.566406 1.507812 0 3.035156-.429688 4.386718-1.324219l3.6875-2.441406s0-.003907.003907-.003907l12.757812-8.445312c4.675781-3.097656 10.277344-4.191406 15.777344-3.070312 5.5 1.113281 10.234375 4.308593 13.332031 8.984374 3.09375 4.675782 4.183594 10.28125 3.066406 15.777344zm0 0"/>
-                                            </svg>
-                                        </div>
-                                        <h2 class="sec__title mb-3 font-size-30 line-height-40">Listhub هي أفضل طريقة للعثور على
-                                            <br>الشركات المحلية الرائعة واكتشافها</h2>
-                                        <p class="sec__desc mb-4">
-                                            كرة القدم شرب الوادي لسحب القدر. Tellus Photography مجاني من الاتحاد الأوروبي
-                                        </p>
-                                    </div><!-- end section-heading -->
-                                    <div class="btn-box">
-                                        <a href="#" class="theme-btn gradient-btn" data-toggle="modal" data-target="#signUpModal"><i class="la la-user-plus mr-2"></i>انشئ حساب</a>
-                                    </div><!-- end btn-box -->
-                                </div>
-                            </div>
-                        </div><!-- end row -->
-                    </div><!-- end cta-content-box -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end cta-area -->
-    <!-- ================================
-        END CTA AREA
-    ================================= -->
-
-    <div class="section-block"></div>
-
-    <!-- ================================
-           START TESTIMONIAL AREA
-    ================================= -->
-    <section class="testimonial-area section-padding text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-heading">
-                        <div class="section-icon gradient-icon mb-3 mx-auto">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
-                            <defs>
-                                <linearGradient id="svg-gradient7">
-                                    <stop offset="5%" stop-color="#ff6b6b"/>
-                                    <stop offset="95%" stop-color="#ffbb3d"/>
-                                </linearGradient>
-                            </defs>
-                                <g>
-                                    <path d="M123.856,71.638H105.66c2.737-20.263,13.941-21.281,19.097-21.75c5.151-0.469,9.094-4.787,9.094-9.959V10.004
-                                            c0-2.749-1.132-5.378-3.13-7.267s-4.688-2.868-7.431-2.717C91.68,1.798,54,17.758,54,83.696v52.04
-                                            c0,8.687,7.067,15.754,15.754,15.754h54.103c8.687,0,15.754-7.068,15.753-15.755V87.392
-                                            C139.61,78.705,132.543,71.638,123.856,71.638z M119.611,131.489H74V83.696c0-46.01,20.461-58.86,39.851-62.487v10.514
-                                            c-13.391,4.076-28.803,16.114-28.803,49.915c0,5.523,4.477,10,10,10h24.563V131.489z"/>
-                                </g>
-                                <g>
-                                    <path d="M226.091,71.638h-18.197c2.737-20.263,13.941-21.281,19.097-21.75c5.151-0.469,9.094-4.787,9.094-9.959V10.004
-                                                c0-2.749-1.132-5.378-3.13-7.267s-4.69-2.868-7.431-2.717c-31.61,1.778-69.29,17.738-69.29,83.676v52.04
-                                                c0,8.687,7.067,15.754,15.754,15.754h54.103c8.687,0,15.755-7.068,15.754-15.756V87.392
-                                                C241.845,78.705,234.778,71.638,226.091,71.638z M221.845,131.49h-45.611V83.696c0-46.01,20.461-58.86,39.851-62.487v10.514
-                                                c-13.391,4.076-28.803,16.114-28.803,49.915c0,5.523,4.477,10,10,10h24.563V131.49z"/>
-                                </g>
-                                <g>
-                                    <path d="M285.07,80.795c-1.86-1.86-4.44-2.93-7.07-2.93s-5.21,1.07-7.07,2.93s-2.93,4.44-2.93,7.07s1.07,5.21,2.93,7.07
-                                            c1.86,1.86,4.44,2.93,7.07,2.93s5.21-1.07,7.07-2.93s2.93-4.44,2.93-7.07S286.93,82.655,285.07,80.795z"/>
-                                </g>
-                                <g>
-                                    <path d="M334.267,77.864h-12.601c-5.523,0-10,4.477-10,10s4.477,10,10,10h12.601C421.241,97.864,492,168.623,492,255.597
-                                            c0,74.232-52.648,139.152-125.187,154.365c-4.631,0.972-7.947,5.056-7.947,9.787v58.104l-61.594-61.594
-                                            c-1.875-1.875-4.419-2.929-7.071-2.929H177.733C90.759,413.33,20,342.571,20,255.597c0-26.805,6.843-53.274,19.79-76.548
-                                            c2.686-4.826,0.949-10.915-3.877-13.6c-4.827-2.686-10.916-0.949-13.6,3.877C7.715,195.565,0,225.397,0,255.597
-                                            C0,353.6,79.73,433.33,177.733,433.33h108.326l75.736,75.736c1.913,1.913,4.47,2.929,7.073,2.929c1.288,0,2.588-0.249,3.825-0.762
-                                            c3.736-1.547,6.173-5.193,6.173-9.238v-74.321c36.183-9.376,68.9-30.239,92.807-59.343C497.678,336.674,512,296.638,512,255.597
-                                            C512,157.595,432.27,77.865,334.267,77.864z"/>
-                                </g>
-                                <g>
-                                    <path d="M379.064,177.492H132.937c-5.523,0-10,4.477-10,10s4.477,10,10,10h246.126c5.523,0,10.001-4.477,10.001-10
-                                            S384.587,177.492,379.064,177.492z"/>
-                                </g>
-                                <g>
-                                    <path d="M379.064,230.825H132.937c-5.523,0-10,4.477-10,10c0,5.523,4.477,10,10,10h246.126c5.523,0,10.001-4.477,10.001-10
-                                            C389.064,235.302,384.587,230.825,379.064,230.825z"/>
-                                </g>
-                                <g>
-                                    <path d="M379.064,284.158H132.937c-5.523,0-10,4.478-10,10c0,5.522,4.477,10,10,10h246.126c5.523,0,10.001-4.478,10.001-10
-                                            C389.064,288.636,384.587,284.158,379.064,284.158z"/>
-                                </g>
-                                <g>
-                                    <path d="M379.063,337.492H247.871c-5.523,0-10,4.478-10,10c0,5.522,4.477,10,10,10h131.192c5.523,0,10-4.478,10-10
-                                            C389.063,341.97,384.586,337.492,379.063,337.492z"/>
-                                </g>
-                                <g>
-                                    <path d="M191.607,337.491h-0.161c-5.523,0-10,4.478-10,10c0,5.522,4.477,10,10,10h0.161c5.523,0,10-4.478,10-10
-                                            C201.607,341.969,197.13,337.491,191.607,337.491z"/>
-                                </g>
-                        </svg>
-                        </div>
-                        <h2 class="sec__title">لا تصدقنا تحقق من كلمة العميل.</h2>
-                        <p class="sec__desc">
-                            كرة القدم شرب الوادي لسحب القدر. قسم التصوير المجاني Tellus <br>
-                            بواسطة feugiat. الآن هذا التنورة المتخصصين
-                        </p>
-                    </div><!-- end section-heading -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-            <div class="row padding-top-60px">
-                <div class="col-lg-12">
-                    <div class="testimonial-carousel owl-trigger-action">
-                        <div class="testimonial-item">
-                            <div class="testi-comment border border-color">
-                                <p class="testi__desc">
-                                    سالفيا ليست حفلة فنية مجمعة من Truffaut Deep V Chillwave. انتقد سيتان هاي لايف طماطم كيوبيدات كوجي.
-                                </p>
-                            </div>
-                            <div class="testi-content">
-                                <img src="{{asset('assets/front')}}/images/avatar-img.jpg" class="testi__img" alt="testimonial image">
-                                <h4 class="tesi__title">ريتشارد دو</h4>
-                                <span class="testi__meta">united states</span>
-                            </div>
-                        </div><!-- end testimonial-item -->
-                        <div class="testimonial-item">
-                            <div class="testi-comment border border-color">
-                                <p class="testi__desc">
-                                    سالفيا ليست حفلة فنية مجمعة من Truffaut Deep V Chillwave. انتقد سيتان هاي لايف طماطم كيوبيدات كوجي.
-                                </p>
-                            </div>
-                            <div class="testi-content">
-                                <img src="{{asset('assets/front')}}/images/avatar-img2.jpg" class="testi__img" alt="testimonial image">
-                                <h4 class="tesi__title">دنوين الشر</h4>
-                                <span class="testi__meta">united kingdom</span>
-                            </div>
-                        </div><!-- end testimonial-item -->
-                        <div class="testimonial-item">
-                            <div class="testi-comment border border-color">
-                                <p class="testi__desc">
-                                    سالفيا ليست حفلة فنية مجمعة من Truffaut Deep V Chillwave. انتقد سيتان هاي لايف طماطم كيوبيدات كوجي.
-                                </p>
-                            </div>
-                            <div class="testi-content">
-                                <img src="{{asset('assets/front')}}/images/avatar-img3.jpg" class="testi__img" alt="testimonial image">
-                                <h4 class="tesi__title">Collis Pong</h4>
-                                <span class="testi__meta">melbourne, australia</span>
-                            </div>
-                        </div><!-- end testimonial-item -->
-                        <div class="testimonial-item">
-                            <div class="testi-comment border border-color">
-                                <p class="testi__desc">
-                                    سالفيا ليست حفلة فنية مجمعة من Truffaut Deep V Chillwave. انتقد سيتان هاي لايف طماطم كيوبيدات كوجي.
-                                </p>
-                            </div>
-                            <div class="testi-content">
-                                <img src="{{asset('assets/front')}}/images/avatar-img.jpg" class="testi__img" alt="testimonial image">
-                                <h4 class="tesi__title">ريتشارد دو</h4>
-                                <span class="testi__meta">united states</span>
-                            </div>
-                        </div><!-- end testimonial-item -->
-                        <div class="testimonial-item">
-                            <div class="testi-comment border border-color">
-                                <p class="testi__desc">
-                                    سالفيا ليست حفلة فنية مجمعة من Truffaut Deep V Chillwave. انتقد سيتان هاي لايف طماطم كيوبيدات كوجي.
-                                </p>
-                            </div>
-                            <div class="testi-content">
-                                <img src="{{asset('assets/front')}}/images/avatar-img2.jpg" class="testi__img" alt="testimonial image">
-                                <h4 class="tesi__title">دنوين الشر</h4>
-                                <span class="testi__meta">united kingdom</span>
-                            </div>
-                        </div><!-- end testimonial-item -->
-                        <div class="testimonial-item">
-                            <div class="testi-comment border border-color">
-                                <p class="testi__desc">
-                                    سالفيا ليست حفلة فنية مجمعة من Truffaut Deep V Chillwave. انتقد سيتان هاي لايف طماطم كيوبيدات كوجي.
-                                </p>
-                            </div>
-                            <div class="testi-content">
-                                <img src="{{asset('assets/front')}}/images/avatar-img3.jpg" class="testi__img" alt="testimonial image">
-                                <h4 class="tesi__title">كوليس بونج</h4>
-                                <span class="testi__meta">melbourne, australia</span>
-                            </div>
-                        </div><!-- end testimonial-item -->
-                    </div><!-- end testimonial-carousel -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end testimonial-area -->
-    <!-- ================================
-           START TESTIMONIAL AREA
-    ================================= -->
-
-    <div class="section-block"></div>
-
-    <!-- ================================
-           START BLOG AREA
-    ================================= -->
-    <section class="blog-area section-padding overflow-hidden">
-        <div class="svg-bg svg-bg-2 gradient-bg-2">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <defs>
-                    <linearGradient id="svg-gradient-2">
-                        <stop offset="5%" stop-color="#e8eef9"/>
-                        <stop offset="95%" stop-color="#ffffff"/>
-                    </linearGradient>
-                </defs>
-                <path d="M0,128L40,149.3C80,171,160,213,240,208C320,203,400,149,480,144C560,139,640,181,720,170.7C800,160,880,96,960,96C1040,96,1120,160,1200,197.3C1280,235,1360,245,1400,250.7L1440,256L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
-            </svg>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-heading text-center">
-                        <div class="section-icon gradient-icon mb-3 mx-auto">
-                            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="svg-gradient8">
-                                        <stop offset="5%" stop-color="#ff6b6b"/>
-                                        <stop offset="95%" stop-color="#ffbb3d"/>
-                                    </linearGradient>
-                                </defs>
-                                <path d="m8 10h2v2h-2z"/>
-                                <path d="m12 10h2v2h-2z"/>
-                                <path d="m16 10h2v2h-2z"/>
-                                <path d="m21 20h-12a1 1 0 0 0 -1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-10a1 1 0 0 0 -1-1zm-1 10h-10v-8h10z"/>
-                                <path d="m26 20h4v2h-4z"/>
-                                <path d="m32 20h16v2h-16z"/>
-                                <path d="m26 24h22v2h-22z"/>
-                                <path d="m26 28h10v2h-10z"/>
-                                <path d="m38 28h6v2h-6z"/>
-                                <path d="m8 36h14v2h-14z"/>
-                                <path d="m8 40h14v2h-14z"/>
-                                <path d="m8 44h14v2h-14z"/>
-                                <path d="m8 48h14v2h-14z"/>
-                                <path d="m59 19.091a4.866 4.866 0 0 0 -5 .022v-10.113a3 3 0 0 0 -3-3h-46a3 3 0 0 0 -3 3v46a3 3 0 0 0 3 3h46a3 3 0 0 0 3-3v-17.249l6.83-11.83a5.005 5.005 0 0 0 -1.83-6.83zm-20.155 28.909h-10.845v-10h14.309l-2.639 4.572a.994.994 0 0 0 -.132.564l.212 3.3zm1.289 1.768 1-1.732 1.732 1-1 1.732a1 1 0 0 1 -1.732-1zm4.135-2.232-2.538-1.465-.154-2.4 4.846 2.8zm3.329-2.7-1.732-1 7.5-12.99-1.732-1-7.5 12.99-1.732-1 8.5-14.722 5.2 3zm4.3-19.454.5-.865 5.2 3-.5.866zm-46.898-17.382h46a1 1 0 0 1 1 1v5.032h-48v-5.032a1 1 0 0 1 1-1zm47 47a1 1 0 0 1 -1 1h-46a1 1 0 0 1 -1-1v-38.968h48v5.184l-8.536 14.784h-16.464a1 1 0 0 0 -1 1v12a1 1 0 0 0 1 1h11.02a3 3 0 0 0 5.58 1.768l1.348-2.336 2.96-1.464a1 1 0 0 0 .423-.4l3.669-6.353zm7.1-30.079-.5.866-5.2-3 .5-.866a3 3 0 0 1 5.2 3z"/>
-                            </svg>
-                        </div>
-                        <h2 class="sec__title">أحدث النصائح والمقالات</h2>
-                        <p class="sec__desc">
-                            كرة القدم شرب الوادي لسحب القدر. قسم التصوير المجاني Tellus <br>
-                            بواسطة feugiat. الآن هذا التنورة المتخصصين
-                        </p>
-                    </div><!-- end section-heading -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-            <div class="row padding-top-60px">
-                <div class="col-lg-12">
-                    <div class="card-carousel owl-trigger-action">
-                        <div class="card-item card-item-layout-2">
-                            <div class="card-image">
-                                <a href="blog-single.html" class="d-block">
-                                    <img src="{{asset('assets/front')}}/images/img10.jpg" class="card__img" alt="blog image">
-                                    <span class="badge">January 15, 2020</span>
-                                </a>
-                                <div class="post-share">
-                                    <span class="la la-share-alt share-icon"></span>
-                                    <div class="post-share-social">
-                                        <a href="#" class="post-share-social-icon"><i class="lab la-facebook-f"></i></a>
-                                        <a href="#" class="post-share-social-icon"><i class="lab la-twitter"></i></a>
-                                        <a href="#" class="post-share-social-icon"><i class="lab la-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div><!-- end card-image -->
-                            <div class="card-content">
-                                <a href="#" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top" title="Kamran Adi">
-                                    <img src="{{asset('assets/front')}}/images/avatar-img.jpg" alt="author-img">
-                                </a>
-                                <ul class="listing-meta d-flex justify-content-center align-items-center">
-                                    <li>
-                                        <a href="#" class="listing-cat-link">السفر</a>,
-                                        <a href="#" class="listing-cat-link">أخبار</a>
-                                    </li>
-                                </ul>
-                                <h4 class="card-title pt-2">
-                                    <a href="blog-single.html">خمسة من حمامات السباحة الطبيعية</a>
-                                </h4>
-                                <p class="card-sub mt-3">
-                                    هل سبق لك أن رأيت فيل يطير؟ في وقت مبكر من صباح الأربعاء ، تم إصدار Walt Disney Studios Motion Pictures
-                                </p>
-                                <ul class="listing-action d-flex justify-content-around align-items-center border-top border-top-color mt-4 pt-4">
-                                    <li class="pill"><i class="la la-share mr-1"></i>275</li>
-                                    <li class="pill"><i class="la la-eye mr-1"></i>319</li>
-                                    <li class="pill"><i class="la la-comment mr-1"></i>24</li>
-                                </ul>
-                            </div><!-- end card-content -->
-                        </div><!-- end card-item -->
-                        <div class="card-item card-item-layout-2">
-                            <div class="card-image">
-                                <a href="blog-single.html" class="d-block">
-                                    <img src="{{asset('assets/front')}}/images/img11.jpg" class="card__img" alt="blog image">
-                                    <span class="badge">March 15, 2020</span>
-                                </a>
-                                <div class="post-share">
-                                    <span class="la la-share-alt share-icon"></span>
-                                    <div class="post-share-social">
-                                        <a href="#" class="post-share-social-icon"><i class="lab la-facebook-f"></i></a>
-                                        <a href="#" class="post-share-social-icon"><i class="lab la-twitter"></i></a>
-                                        <a href="#" class="post-share-social-icon"><i class="lab la-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div><!-- end card-image -->
-                            <div class="card-content">
-                                <a href="#" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top" title="Kamran Adi">
-                                    <img src="{{asset('assets/front')}}/images/avatar-img2.jpg" alt="author-img">
-                                </a>
-                                <ul class="listing-meta d-flex justify-content-center align-items-center">
-                                    <li>
-                                        <a href="#" class="listing-cat-link">أصحاب الأعمال</a>,
-                                        <a href="#" class="listing-cat-link">مطاعم</a>
-                                    </li>
-                                </ul>
-                                <h4 class="card-title pt-2">
-                                    <a href="blog-single.html">الجانب البائس في الساعة السعيدة</a>
-                                </h4>
-                                <p class="card-sub mt-3">
-                                    هل سبق لك أن رأيت فيل يطير؟ في وقت مبكر من صباح الأربعاء ، تم إصدار Walt Disney Studios Motion Pictures
-                                </p>
-                                <ul class="listing-action d-flex justify-content-around align-items-center border-top border-top-color mt-4 pt-4">
-                                    <li class="pill"><i class="la la-share mr-1"></i>275</li>
-                                    <li class="pill"><i class="la la-eye mr-1"></i>319</li>
-                                    <li class="pill"><i class="la la-comment mr-1"></i>24</li>
-                                </ul>
-                            </div><!-- end card-content -->
-                        </div><!-- end card-item -->
-                        <div class="card-item card-item-layout-2">
-                            <div class="card-image">
-                                <a href="blog-single.html" class="d-block">
-                                    <img src="{{asset('assets/front')}}/images/img12.jpg" class="card__img" alt="blog image">
-                                    <span class="badge">July 15, 2020</span>
-                                </a>
-                                <div class="post-share">
-                                    <span class="la la-share-alt share-icon"></span>
-                                    <div class="post-share-social">
-                                        <a href="#" class="post-share-social-icon"><i class="lab la-facebook-f"></i></a>
-                                        <a href="#" class="post-share-social-icon"><i class="lab la-twitter"></i></a>
-                                        <a href="#" class="post-share-social-icon"><i class="lab la-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div><!-- end card-image -->
-                            <div class="card-content">
-                                <a href="#" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top" title="Kamran Adi">
-                                    <img src="{{asset('assets/front')}}/images/avatar-img3.jpg" alt="author-img">
-                                </a>
-                                <ul class="listing-meta d-flex justify-content-center align-items-center">
-                                    <li>
-                                        <a href="#" class="listing-cat-link">جولة</a>,
-                                        <a href="#" class="listing-cat-link">أخبار</a>
-                                    </li>
-                                </ul>
-                                <h4 class="card-title pt-2">
-                                    <a href="blog-single.html">أفضل 5 رحلات بالقارب في لندن</a>
-                                </h4>
-                                <p class="card-sub mt-3">
-                                    هل سبق لك أن رأيت فيل يطير؟ في وقت مبكر من صباح الأربعاء ، تم إصدار Walt Disney Studios Motion Pictures
-                                </p>
-                                <ul class="listing-action d-flex justify-content-around align-items-center border-top border-top-color mt-4 pt-4">
-                                    <li class="pill"><i class="la la-share mr-1"></i>275</li>
-                                    <li class="pill"><i class="la la-eye mr-1"></i>319</li>
-                                    <li class="pill"><i class="la la-comment mr-1"></i>24</li>
-                                </ul>
-                            </div><!-- end card-content -->
-                        </div><!-- end card-item -->
-                        <div class="card-item card-item-layout-2">
-                            <div class="card-image">
-                                <a href="blog-single.html" class="d-block">
-                                    <img src="{{asset('assets/front')}}/images/img13.jpg" class="card__img" alt="blog image">
-                                    <span class="badge">January 15, 2020</span>
-                                </a>
-                                <div class="post-share">
-                                    <span class="la la-share-alt share-icon"></span>
-                                    <div class="post-share-social">
-                                        <a href="#" class="post-share-social-icon"><i class="lab la-facebook-f"></i></a>
-                                        <a href="#" class="post-share-social-icon"><i class="lab la-twitter"></i></a>
-                                        <a href="#" class="post-share-social-icon"><i class="lab la-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div><!-- end card-image -->
-                            <div class="card-content">
-                                <a href="#" class="user-thumb d-inline-block" data-toggle="tooltip" data-placement="top" title="Kamran Adi">
-                                    <img src="{{asset('assets/front')}}/images/avatar-img4.jpg" alt="author-img">
-                                </a>
-                                <ul class="listing-meta d-flex justify-content-center align-items-center">
-                                    <li>
-                                        <a href="#" class="listing-cat-link">متجر</a>,
-                                        <a href="#" class="listing-cat-link">قماش</a>
-                                    </li>
-                                </ul>
-                                <h4 class="card-title pt-2">
-                                    <a href="blog-single.html">أفضل 5 متاجر ملابس في نيويورك</a>
-                                </h4>
-                                <p class="card-sub mt-3">
-                                    هل سبق لك أن رأيت فيل يطير؟ في وقت مبكر من صباح الأربعاء ، تم إصدار Walt Disney Studios Motion Pictures
-                                </p>
-                                <ul class="listing-action d-flex justify-content-around align-items-center border-top border-top-color mt-4 pt-4">
-                                    <li class="pill"><i class="la la-share mr-1"></i>275</li>
-                                    <li class="pill"><i class="la la-eye mr-1"></i>319</li>
-                                    <li class="pill"><i class="la la-comment mr-1"></i>24</li>
-                                </ul>
-                            </div><!-- end card-content -->
-                        </div><!-- end card-item -->
-                    </div>
-                </div>
-            </div><!-- end row -->
-            <div class="more-btn-box pt-5 text-center">
-                <a href="blog-grid.html" class="theme-btn gradient-btn"><i class="la la-list-alt mr-2"></i>مشاهدة كل المنشورات</a>
-            </div>
-        </div><!-- end container -->
-    </section><!-- end blog-area -->
-    <!-- ================================
-           START BLOG AREA
-    ================================= -->
-
-    <!-- ================================
-        START MOBILE APP AREA
-    ================================= -->
-    <section class="mobile-app-area section-padding">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="mobile-app-content">
-                        <div class="section-heading">
-                            <div class="section-icon gradient-icon mb-3">
-                                <svg id="Layer_5" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="svg-gradient9">
-                                            <stop offset="5%" stop-color="#ff6b6b"/>
-                                            <stop offset="95%" stop-color="#ffbb3d"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <path
-                                        d="m63 33c0-6.689-4.718-12.29-11-13.668v-13.332c0-2.757-2.243-5-5-5h-26c-2.757 0-5 2.243-5 5v11h-5.781l-.603 2.416-2.134-1.281-5.348 5.345 1.281 2.136-2.415.603v7.562l2.416.603-1.282 2.136 5.347 5.346 2.134-1.281.604 2.415h5.781v15c0 2.757 2.243 5 5 5h26c2.757 0 5-2.243 5-5v-11.332c6.282-1.378 11-6.979 11-13.668zm-2 0c0 1.949-.477 3.785-1.305 5.414-.555-1.527-1.832-2.728-3.482-3.141l-4.213-1.054v-.239c1.246-.939 2-2.416 2-3.979v-2c0-1.397-.591-2.741-1.622-3.687-1.03-.943-2.426-1.417-3.822-1.294-2.555.221-4.556 2.501-4.556 5.187v1.793c0 1.563.754 3.04 2 3.979v.239l-4.213 1.054c-1.65.413-2.927 1.614-3.482 3.141-.828-1.628-1.305-3.464-1.305-5.413 0-6.617 5.383-12 12-12s12 5.383 12 12zm-15-13.668c-.688.151-1.354.359-2 .607v-2.939h-20v14h11.16c-.095.655-.16 1.319-.16 2 0 6.689 4.718 12.29 11 13.668v2.332h-24v-34h24zm-10.41 9.668h-9.59v-10h16v1.894c-3.054 1.773-5.38 4.659-6.41 8.106zm-14.59-26h26c1.654 0 3 1.346 3 3v3h-32v-3c0-1.654 1.346-3 3-3zm-5 31.572c-.631.278-1.312.428-2 .428-2.757 0-5-2.243-5-5s2.243-5 5-5c.688 0 1.369.15 2 .428zm-4.219 6.428-.487-1.949-.203-.535-1.142-.464-2.158 1.296-3.138-3.139 1.296-2.159-.5-1.22-2.449-.611v-4.438l2.446-.611.503-1.22-1.296-2.159 3.138-3.139 2.158 1.296 1.22-.496.612-2.452h4.219v4.305c-.649-.195-1.321-.305-2-.305-3.86 0-7 3.141-7 7s3.14 7 7 7c.679 0 1.351-.11 2-.305v4.305zm35.219 20h-26c-1.654 0-3-1.346-3-3v-3h32v3c0 1.654-1.346 3-3 3zm3-8h-32v-42h32v8.051c-.332-.024-.662-.051-1-.051s-.668.027-1 .051v-6.051h-28v38h28v-4.051c.332.024.662.051 1 .051s.668-.027 1-.051zm-1-8c-3.585 0-6.799-1.589-9-4.089v-.788c0-1.379.935-2.576 2.272-2.911l5.728-1.431v-2.911l-.497-.289c-.941-.548-1.503-1.513-1.503-2.581v-1.793c0-1.659 1.199-3.062 2.729-3.195.858-.069 1.671.201 2.298.776.618.567.973 1.373.973 2.212v2c0 1.068-.562 2.033-1.503 2.581l-.497.289v2.911l5.728 1.431c1.337.335 2.272 1.532 2.272 2.911v.788c-2.201 2.5-5.415 4.089-9 4.089z"/>
-                                    <path d="m38 5h2v2h-2z"/>
-                                    <path d="m28 5h8v2h-8z"/>
-                                    <path d="m30 57h8v2h-8z"/>
-                                    <path d="m44 57h2v2h-2z"/>
-                                    <path d="m22 57h2v2h-2z"/>
-                                    <path d="m24 33h9v2h-9z"/>
-                                    <path d="m24 37h9v2h-9z"/>
-                                    <path d="m24 41h9v2h-9z"/>
-                                    <path d="m24 45h9v2h-9z"/>
-                                    <path d="m57 19c1.654 0 3-1.346 3-3 0-1.302-.839-2.402-2-2.816v-8.184h-2v8.184c-1.161.414-2 1.514-2 2.816 0 1.654 1.346 3 3 3zm0-4c.551 0 1 .448 1 1s-.449 1-1 1-1-.448-1-1 .449-1 1-1z"/>
-                                    <path d="m56 1h2v2h-2z"/>
-                                    <path d="m11 45c-1.654 0-3 1.346-3 3 0 1.302.839 2.402 2 2.816v8.184h2v-8.184c1.161-.414 2-1.514 2-2.816 0-1.654-1.346-3-3-3zm0 4c-.551 0-1-.448-1-1s.449-1 1-1 1 .448 1 1-.449 1-1 1z"/>
-                                    <path d="m10 61h2v2h-2z"/>
-                                </svg>
-                            </div>
-                            <h2 class="sec__title mb-3">اكتشف أشياء مذهلة يمكنك القيام بها في كل مكان تذهب إليه</h2>
-                            <p class="sec__desc font-size-17 margin-bottom-35px">
-                                كل متعة هو تجنب كل ألم. ولكن في
-                                أو المساعي الحميدة ، أو يتجنب المتعة ، ومع أ
-                            </p>
-                        </div><!-- end section-heading -->
-                        <ul class="info-list contact-links">
-                            <li class="d-flex align-items-center mb-2"><i class="la la-search icon"></i> البحث أثناء التنقل</li>
-                            <li class="d-flex align-items-center mb-2"><i class="la la-file-text-o icon"></i> القائمة في الوقت الحقيقي</li>
-                            <li class="d-flex align-items-center mb-2"><i class="la la-bell icon"></i> احصل على أحدث المعلومات</li>
-                        </ul>
-                        <div class="btn-box margin-top-40px">
-                            <a href="#" class="theme-btn download-btn mr-2 bg-1 text-white hover-scale-2 mb-2"><span class="la la-apple font-size-18 mr-1"></span>App Store</a>
-                            <a href="#" class="theme-btn download-btn bg-2 text-white hover-scale-2 mb-2"><span class="la la-android font-size-18 mr-1"></span>Google Play</a>
-                        </div><!-- end btn-box -->
-                    </div>
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="mobile-img">
-                        <img class="lazy" src="{{asset('assets/front')}}/images/img-loading.png" data-src="{{asset('assets/front')}}/images/map-img.png" alt="map-img">
-                        <div class="map-marker map-marker-1 bounce">
-                            <img src="{{asset('assets/front')}}/images/small-img.jpg" alt="">
-                            <div class="map-pin-bg"></div>
-                        </div><!-- end map-marker -->
-                        <div class="map-marker map-marker-2 bounce">
-                            <img src="{{asset('assets/front')}}/images/small-img2.jpg" alt="">
-                            <div class="map-pin-bg"></div>
-                        </div><!-- end map-marker -->
-                        <div class="map-marker map-marker-3 bounce">
-                            <img src="{{asset('assets/front')}}/images/small-img3.jpg" alt="">
-                            <div class="map-pin-bg"></div>
-                        </div><!-- end map-marker -->
-                        <div class="map-marker map-marker-4 bounce">
-                            <img src="{{asset('assets/front')}}/images/small-img4.jpg" alt="">
-                            <div class="map-pin-bg"></div>
-                        </div><!-- end map-marker -->
-                        <div class="map-marker map-marker-5 bounce">
-                            <img src="{{asset('assets/front')}}/images/small-img5.jpg" alt="">
-                            <div class="map-pin-bg"></div>
-                        </div><!-- end map-marker -->
-                        <div class="map-marker map-marker-6 bounce">
-                            <img src="{{asset('assets/front')}}/images/small-img6.jpg" alt="">
-                            <div class="map-pin-bg"></div>
-                        </div><!-- end map-marker -->
-                    </div><!-- end mobile-img -->
-                </div><!-- end col-lg-6 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end mobile-app-area -->
-    <!-- ================================
-        END MOBILE APP AREA
-    ================================= -->
-
-    <div class="section-block"></div>
-
-    <!-- ================================
-           START CLIENTLOGO AREA
-    ================================= -->
-    <section class="clientlogo-area section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-heading text-center">
-                        <div class="section-icon gradient-icon mb-4 mx-auto">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
-                           <defs>
-                               <linearGradient id="svg-gradient10">
-                                   <stop offset="5%" stop-color="#ff6b6b"/>
-                                   <stop offset="95%" stop-color="#ffbb3d"/>
-                               </linearGradient>
-                           </defs>
-                                <g>
-                                    <path d="M499.1,186.205l-25.765-22.266c-3.196-2.764-8.029-2.411-10.792,0.787c-2.763,3.197-2.412,8.029,0.787,10.792
-                                        l25.763,22.266c9.184,7.937,10.198,21.866,2.262,31.05L324.008,422.47c-2.763,3.197-2.412,8.029,0.786,10.793
-                                        c1.447,1.251,3.228,1.863,5,1.863c2.147,0,4.28-0.898,5.793-2.648L502.933,238.84C516.388,223.272,514.668,199.659,499.1,186.205z
-                                        "/>
-                                </g>
-                                <g>
-                                    <path d="M453.741,147.003L334.557,44.002c-7.542-6.518-17.172-9.705-27.112-8.985c-9.942,0.723-19.006,5.276-25.524,12.817
-                                        l-11.356,13.14c-2.763,3.198-2.412,8.03,0.786,10.793c3.199,2.765,8.03,2.411,10.793-0.786l11.356-13.14
-                                        c3.845-4.448,9.192-7.134,15.057-7.561c5.865-0.431,11.544,1.455,15.993,5.3l119.184,103.001c1.447,1.251,3.228,1.863,5,1.863
-                                        c2.147,0,4.28-0.898,5.793-2.648C457.289,154.598,456.938,149.766,453.741,147.003z"/>
-                                </g>
-                                <g>
-                                    <path d="M381.099,119.952L174.911,50.794c-19.511-6.544-40.704,4.005-47.247,23.513l-2.72,8.109
-                                        c-1.344,4.006,0.815,8.344,4.822,9.688c4.007,1.344,8.343-0.814,9.688-4.822l2.72-8.109c3.86-11.509,16.361-17.732,27.871-13.871
-                                        l206.189,69.157c11.509,3.861,17.731,16.363,13.871,27.871l-95.933,286.02c-1.344,4.006,0.815,8.343,4.822,9.688
-                                        c0.807,0.27,1.627,0.399,2.434,0.399c3.198,0,6.18-2.021,7.254-5.22l95.933-286.019
-                                        C411.157,147.691,400.609,126.495,381.099,119.952z"/>
-                                </g>
-                                <g>
-                                    <path d="M254.795,100.769H37.318C16.741,100.769,0,117.509,0,138.086v301.679c0,20.577,16.741,37.318,37.318,37.318h217.478
-                                        c20.577,0,37.318-16.741,37.318-37.318V138.086C292.113,117.509,275.373,100.769,254.795,100.769z M276.809,439.765
-                                        c0,12.139-9.876,22.014-22.014,22.014H37.318c-12.139,0-22.014-9.876-22.014-22.014V138.086c0-12.139,9.876-22.014,22.014-22.014
-                                        h217.478c12.139,0,22.014,9.876,22.014,22.014V439.765z"/>
-                                </g>
-                                <g>
-                                    <path d="M258.778,311.96H33.336c-4.226,0-7.652,3.426-7.652,7.652c0,4.226,3.426,7.652,7.652,7.652h225.443
-                                        c4.226,0,7.652-3.426,7.652-7.652C266.43,315.386,263.004,311.96,258.778,311.96z"/>
-                                </g>
-                                <g>
-                                    <path d="M223.106,355.718h-94.754c-4.226,0-7.652,3.426-7.652,7.652c0,4.226,3.426,7.652,7.652,7.652h94.754
-                                        c4.226,0,7.652-3.426,7.652-7.652C230.758,359.144,227.332,355.718,223.106,355.718z"/>
-                                </g>
-                                <g>
-                                    <path d="M102.845,355.718H69.006c-4.226,0-7.652,3.426-7.652,7.652c0,4.226,3.426,7.652,7.652,7.652h33.839
-                                        c4.226,0,7.652-3.426,7.652-7.652C110.497,359.144,107.071,355.718,102.845,355.718z"/>
-                                </g>
-                                <g>
-                                    <path d="M223.106,384.969h-154.1c-4.226,0-7.652,3.426-7.652,7.652c0,4.226,3.426,7.652,7.652,7.652h154.1
-                                        c4.226,0,7.652-3.426,7.652-7.652C230.758,388.394,227.332,384.969,223.106,384.969z"/>
-                                </g>
-                                <g>
-                                    <path d="M223.106,414.219h-154.1c-4.226,0-7.652,3.426-7.652,7.652c0,4.226,3.426,7.652,7.652,7.652h154.1
-                                        c4.226,0,7.652-3.426,7.652-7.652C230.758,417.645,227.332,414.219,223.106,414.219z"/>
-                                </g>
-                                <g>
-                                    <path d="M230.156,189.552c-0.9-2.77-3.294-4.789-6.176-5.207l-49.103-7.135l-21.959-44.495c-1.29-2.612-3.949-4.266-6.862-4.266
-                                        c-2.912,0-5.572,1.654-6.862,4.266l-21.96,44.495l-49.103,7.135c-2.882,0.418-5.277,2.437-6.176,5.207
-                                        c-0.9,2.77-0.149,5.81,1.936,7.843l35.532,34.634l-8.388,48.906c-0.492,2.87,0.688,5.771,3.044,7.483
-                                        c1.333,0.968,2.912,1.461,4.498,1.461c1.217,0,2.44-0.291,3.56-0.878l43.919-23.091l43.919,23.091
-                                        c2.578,1.355,5.702,1.129,8.058-0.583c2.357-1.712,3.536-4.613,3.044-7.483l-8.388-48.906l35.531-34.634
-                                        C230.305,195.362,231.056,192.322,230.156,189.552z M179.127,223.879c-1.804,1.758-2.627,4.291-2.201,6.773l6.447,37.589
-                                        l-33.757-17.748c-2.23-1.171-4.893-1.171-7.121,0l-33.757,17.748l6.447-37.589c0.425-2.482-0.397-5.015-2.201-6.773l-27.309-26.62
-                                        l37.741-5.485c2.492-0.362,4.646-1.927,5.761-4.186l16.878-34.2l16.878,34.2c1.114,2.258,3.269,3.824,5.761,4.186l37.742,5.485
-                                        L179.127,223.879z"/>
-                                </g>
-                        </svg>
-                        </div>
-                        <div class="counter-item mb-3">
-                            <h3 class="counter__number text-color-2 font-size-50">
-                                <span class="counter">25,100</span>
-                                <span class="count-symbol">+</span>
-                            </h3>
-                        </div>
-                        <h2 class="sec__title mb-5">اختارت الشركة Listhub لأعمالها <br>
-                            لماذا لا تحاول</h2>
-                    </div><!-- end section-heading -->
-                    <div class="client-logo-box position-relative padding-top-200px padding-bottom-140px">
-                        <a href="#" class="client-logo-item bounce" data-toggle="tooltip" data-placement="top" title="Airbnd">
-                            <img src="{{asset('assets/front')}}/images/airbnb.png" alt="Website-logo">
-                        </a>
-                        <a href="#" class="client-logo-item bounce" data-toggle="tooltip" data-placement="top" title="Facebook">
-                            <img src="{{asset('assets/front')}}/images/facebook.png" alt="Website-logo">
-                        </a>
-                        <a href="#" class="client-logo-item bounce" data-toggle="tooltip" data-placement="top" title="Microsoft">
-                            <img src="{{asset('assets/front')}}/images/microsoft.png" alt="Website-logo">
-                        </a>
-                        <a href="#" class="client-logo-item bounce" data-toggle="tooltip" data-placement="top" title="Github">
-                            <img src="{{asset('assets/front')}}/images/github.png" alt="Website-logo">
-                        </a>
-                        <a href="#" class="client-logo-item bounce" data-toggle="tooltip" data-placement="top" title="Slack">
-                            <img src="{{asset('assets/front')}}/images/slack.png" alt="Website-logo">
-                        </a>
-                        <a href="#" class="client-logo-item bounce" data-toggle="tooltip" data-placement="top" title="Git">
-                            <img src="{{asset('assets/front')}}/images/git.png" alt="Website-logo">
-                        </a>
-                        <a href="#" class="client-logo-item bounce" data-toggle="tooltip" data-placement="top" title="Spotify">
-                            <img src="{{asset('assets/front')}}/images/spotify.png" alt="Website-logo">
-                        </a>
-                        <a href="#" class="client-logo-item bounce" data-toggle="tooltip" data-placement="top" title="Vimeo">
-                            <img src="{{asset('assets/front')}}/images/vimeo.png" alt="Website-logo">
-                        </a>
-                        <a href="#" class="client-logo-item bounce" data-toggle="tooltip" data-placement="top" title="Yelp">
-                            <img src="{{asset('assets/front')}}/images/yelp.png" alt="Website-logo">
-                        </a>
-                        <a href="#" class="client-logo-item bounce" data-toggle="tooltip" data-placement="top" title="Excel">
-                            <img src="{{asset('assets/front')}}/images/excel.png" alt="Website-logo">
-                        </a>
-                    </div><!-- end client-logo-box -->
-                    <p class="font-weight-medium pt-5 text-center">ينمو تسويقك وكن سعيدًا بعملك
-                        <a href="#" class="btn-text" data-toggle="modal" data-target="#signUpModal">البدء <i class="la la-arrow-right icon"></i></a>
-                    </p>
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end clientlogo-area -->
-    <!-- ================================
-           START CLIENTLOGO AREA
-    ================================= -->
-
-    <!-- ================================
-        START CTA AREA
-    ================================= -->
-    <section class="cta-area">
-        <div class="container-fluid pl-0">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="cta-content-box cta-content-box-2">
-                        <div class="row align-items-center">
-                            <div class="col-lg-5">
-                                <div class="cta-img">
-                                    <img class="lazy" src="{{asset('assets/front')}}/images/img-loading.png" data-src="{{asset('assets/front')}}/images/img37.jpg" alt="">
-                                    <div class="cta-img-shape">
-                                        <svg viewBox="0 0 500 150" preserveAspectRatio="none">
-                                            <path d="M627.25,-82.39 C346.22,43.91 512.69,168.25 560.66,205.75 L500.00,150.00 L500.00,0.00 Z" style="stroke: none; fill: #fff;"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 mr-auto">
-                                <div class="cta-content">
-                                    <div class="section-heading">
-                                        <h2 class="sec__title mb-1 font-size-30 line-height-40">اشترك في نشرتنا الإخبارية</h2>
-                                        <p class="sec__desc mb-4">هل تريد أن يتم إخطارك بآخر تحديث؟ فقط قم بالتسجيل.</p>
-                                    </div><!-- end section-heading -->
-                                    <form action="#" class="form-box">
-                                        <div class="form-group">
-                                            <span class="la la-envelope form-icon"></span>
-                                            <input class="form-control form-control-styled" type="email" name="email" placeholder="أدخل عنوان البريد الالكتروني">
-                                            <p class="font-size-12 font-weight-medium pt-1"><i class="la la-lock mr-1"></i>أنت محمي بنسبة 100٪ معنا</p>
-                                        </div>
-                                        <div class="btn-box pt-2">
-                                            <button type="submit" class="theme-btn gradient-btn border-0">
-                                                إشترك الآن <i class="la la-arrow-right ml-2"></i>
-                                            </button>
-                                        </div>
-                                    </form><!-- end form-box -->
-                                </div>
-                            </div>
-                        </div><!-- end row -->
-                    </div><!-- end cta-content-box -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end cta-area -->
 @endsection

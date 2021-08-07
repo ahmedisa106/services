@@ -27,8 +27,12 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => 'admin:admin'], functio
     Route::get('stores/dataTable', 'StoresController@dataTable')->name('stores.dataTable');
     Route::post('stores/delete-all', 'StoresController@deleteAll')->name('stores.deleteAll');
     Route::get('stores/getZone', 'StoresController@getZone')->name('stores.getZone');
+    Route::post('stores/approval', 'StoresController@approval')->name('stores.approval');
     Route::resource('stores', 'StoresController')->except('show');
     /*end stores*/
 
+    /*comments*/
+    Route::resource('comments', 'CommentsController');
+    /*end comments*/
 
 });

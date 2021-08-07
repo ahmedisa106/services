@@ -23,9 +23,14 @@ class StoreRepo implements StoreInterface
         return $this->model->with('category')->get();
     }
 
+    public function getALlApproval()
+    {
+        return $this->model->with('category', 'workingDates')->where('approval', 1)->get();
+    }
+
     public function find($id)
     {
-        return $this->model->with('album', 'category')->find($id);
+        return $this->model->with('album', 'category', 'workingDates')->find($id);
     }
 
 
@@ -46,6 +51,10 @@ class StoreRepo implements StoreInterface
 
             $data['status'] = 'close';
         }
+        if (!isset($data['approval'])) {
+
+            $data['approval'] = 0;
+        }
 
         $store = $this->model->create($data);
         $store->category()->sync($data['category_id']);
@@ -54,6 +63,7 @@ class StoreRepo implements StoreInterface
 
     public function update($data, $id)
     {
+
         $store = $this->model->find($id);
         if (isset($data['photo'])) {
 
@@ -72,6 +82,9 @@ class StoreRepo implements StoreInterface
 
         if (!isset($data['status'])) {
             $data['status'] = 'close';
+        }
+        if (!isset($data['approval'])) {
+            $data['approval'] = 0;
         }
 
         $store->update($data);

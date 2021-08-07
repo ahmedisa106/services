@@ -1,19 +1,23 @@
 <header class="header-area ">
+
     <div class="header-top-bar bg-dark py-2 padding-right-30px padding-left-30px">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 d-flex align-items-center header-top-info font-size-14">
 
-                    <p class="login-and-signup-wrap">
-                        <a href="#">
-                            <span class="mr-1 la la-whatsapp"> {{$settings->whatsapp}}</span>
-                        </a>
-                        <a href="#">
-                            <span class="mr-1 la la-phone"> {{$settings->mobile}}</span>
-                        </a>
 
+                    @guest()
+                        <p class="login-and-signup-wrap">
+                            <a href="#" data-toggle="modal" data-target="#loginModal">
+                                <span class="mr-1 la la-sign-in"></span>تسجيل الدخول
+                            </a>
+                            <span class="or-text px-2">or</span>
+                            <a href="#" data-toggle="modal" data-target="#signUpModal">
+                                <span class="mr-1 la la-user-plus"></span>سجل
+                            </a>
+                        </p>
+                    @endguest
 
-                    </p>
                 </div><!-- end col-lg-6 -->
                 <div class="col-lg-6 d-flex align-items-center justify-content-end header-top-info">
                     <span class="mr-2 text-white font-weight-semi-bold font-size-14">اتبعنا:</span>
@@ -23,6 +27,17 @@
                         <li><a href="{{$settings->instagram}}" target="_blank" class="instagram-bg"><i class="lab la-instagram"></i></a></li>
                         <li><a href="{{$settings->youtube}}" target="_blank" class="youtube-bg"><i class="la la-youtube"></i></a></li>
                     </ul>
+
+                    <p class="login-and-signup-wrap ml-5">
+                        <a href="#">
+                            <span class="mr-1 la la-whatsapp"> {{$settings->whatsapp}}</span>
+                        </a>
+                        <a href="#">
+                            <span class="mr-1 la la-phone"> {{$settings->mobile}}</span>
+                        </a>
+
+
+                    </p>
                 </div>
             </div><!-- end row -->
         </div><!-- end container-fluid -->
@@ -33,7 +48,7 @@
                 <div class="col-lg-12">
                     <div class="menu-full-width">
                         <div class="logo">
-                            <a href="index.html"><img src="{{asset('assets/front')}}/images/logo-white.png" alt="logo"></a>
+                            <a href="{{url('/')}}"><img src="{{asset('assets/front')}}/images/logo-white.png" alt="logo"></a>
                             <div class="d-flex align-items-center">
                                 <a href="add-listing.html" class="btn-gray add-listing-btn-show font-size-24 mr-2 flex-shrink-0" data-toggle="tooltip" data-placement="left" title="Add Listing">
                                     <i class="la la-plus"></i>
@@ -53,7 +68,7 @@
                                     <div class="instant-results">
                                         <ul class="instant-results-list">
                                             @foreach($categories->take(5) as $index=>$category)
-                                                <li><a href="{{route('front.getCategory',$category->id)}}" class="d-flex align-items-center"><span class="icon-element bg-{{$index}} mr-2"><i class="{{$category->icon}}"></i></span>{{$category->name}}</a></li>
+                                                <li><a href="{{route('front.getCategory',$category->id)}}" class="d-flex align-items-center"><span class="icon-element bg-{{$index}} mr-2"><i class="la la-{{$category->icon}}"></i></span>{{$category->name}}</a></li>
 
                                             @endforeach
 
@@ -86,11 +101,13 @@
                                 </ul>
                             </nav>
                         </div><!-- end main-menu-content -->
-                        <div class="nav-right-content">
-                            <a href="{{route('front.addStore')}}" class="theme-btn gradient-btn shadow-none add-listing-btn-hide">
-                                <i class="la la-plus mr-2"></i>إضافة قائمة
-                            </a>
-                        </div><!-- end nav-right-content -->
+                        @auth()
+                            <div class="nav-right-content">
+                                <a href="{{route('front.addStore')}}" class="theme-btn gradient-btn shadow-none add-listing-btn-hide">
+                                    <i class="la la-plus mr-2"></i>إضافة قائمة
+                                </a>
+                            </div><!-- end nav-right-content -->
+                        @endauth
                     </div><!-- end menu-full-width -->
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->

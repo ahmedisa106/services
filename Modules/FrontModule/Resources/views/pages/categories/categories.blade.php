@@ -46,7 +46,7 @@
                             <div class="category-content d-flex align-items-center justify-content-center">
                                 <a href="{{route('front.getCategory',$category->id)}}" class="category-link d-flex flex-column justify-content-center w-100 h-100">
                                     <div class="icon-element mb-3 mx-auto">
-                                        <span class="la {{$category->icon}}"></span>
+                                        <span class="la la-{{$category->icon}}"></span>
                                     </div>
                                     <div class="cat-content">
                                         <h4 class="cat__title mb-3">{{$category->name}}</h4>

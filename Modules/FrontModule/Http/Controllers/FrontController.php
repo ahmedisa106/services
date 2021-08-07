@@ -5,7 +5,6 @@ namespace Modules\FrontModule\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\AreaModule\Entities\Government;
 use Modules\StoresModule\Entities\Store;
 use Modules\StoresModule\Helper\CategoryRepo;
 use Modules\StoresModule\Helper\StoreRepo;
@@ -29,9 +28,9 @@ class FrontController extends Controller
     public function index()
     {
 
-        $stores = $this->stores->getALl();
-        $governments = Government::all();
-        return view('frontmodule::index', compact('stores', 'governments'));
+        $stores = $this->stores->getALlApproval();
+
+        return view('frontmodule::index', compact('stores'));
     }
 
     public function categories()
@@ -79,10 +78,16 @@ class FrontController extends Controller
                 $q->where('name', 'like', '%' . $data['search_text'] . '%');
             }
 
-            if (isset($data['government']) && $data['government']) {
-                $q->where('government_id', $data['government']);
+            if (isset($data['government_id']) && $data['government_id']) {
+                $q->where('government_id', $data['government_id']);
             }
-        })->paginate(30);
+            if (isset($data['zone_id']) && $data['zone_id']) {
+                $q->where('zone_id', $data['zone_id']);
+            }
+            if (isset($data['status']) && $data['status']) {
+                $q->where('status', $data['status']);
+            }
+        })->paginate(5);
 
         return view('frontmodule::pages.search', compact('stores'));
 

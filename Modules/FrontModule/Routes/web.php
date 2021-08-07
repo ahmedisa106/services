@@ -21,7 +21,7 @@ Route::group(['prefix' => '', 'middleware' => 'web'], function () {
     Route::get('/categories/{id}/show', 'FrontController@show_category')->name('front.getCategory');
     Route::get('/stores/{id}/show', 'FrontController@show_store')->name('front.getStore');
 
-    Route::get('/stores/add-new', 'FrontController@addStore')->name('front.addStore');
+    Route::get('/stores/add-new', 'FrontController@addStore')->name('front.addStore')->middleware('auth');
 
     Route::get('/search', 'FrontController@search')->name('front.search');
 });

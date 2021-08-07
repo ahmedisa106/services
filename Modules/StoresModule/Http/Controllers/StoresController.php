@@ -9,6 +9,7 @@ use Modules\AreaModule\Entities\Government;
 use Modules\CommonModule\Helper\upload;
 use Modules\StoresModule\Entities\AlbumStore;
 use Modules\StoresModule\Entities\Store;
+use Modules\StoresModule\Entities\WorkingDate;
 use Modules\StoresModule\Helper\CategoryRepo;
 use Modules\StoresModule\Helper\StoreRepo;
 use Modules\StoresModule\Helper\StoreService;
@@ -39,6 +40,7 @@ class StoresController extends Controller
     public function index()
     {
 
+
         return view('storesmodule::stores.index');
     }
 
@@ -68,10 +70,9 @@ class StoresController extends Controller
                     return "Category";
                 }
             })
-//            ->addColumn('status', function ($row) {
-//                $checked = "checked";
-//                return '<input type="checkbox" value="open" name="status" class="switchBootstrap form-control "  checked id="switchBootstrap18"  data-on-color="success" data-off-color="danger"/></div>';
-//            })
+            ->addColumn('approval', function ($row) {
+                return view('storesmodule::stores.approval', compact('row'));
+            })
             ->addColumn('operations', function ($row) {
 
 
@@ -81,7 +82,9 @@ class StoresController extends Controller
                  <input type="hidden" class="model_id" name="id" value="' . $row->id . '">
                 <button    type="submit"  class="btn btn-sm btn-outline-danger deleteBtn float-left ml-1 "><i class="la la-trash"></i></button>
               </form>';
-                return $edit . ' ' . $delete;
+
+                $comments = '<a href="' . route('comments.show', $row->id) . '" class="text-center btn-sm btn btn-outline-info"><i class="la la-comment"></i></a>';
+                return $edit . ' ' . $delete . ' ' . $comments;
             })
             ->addColumn('photo', function ($row) {
 
@@ -117,8 +120,18 @@ class StoresController extends Controller
     public function store(StoreRequest $request)
     {
 
+
         $data = $request->except('_token', 'store_id');
         $store = $this->store->create($data);
+
+        foreach ($request->day as $index => $day) {
+            $store->workingDates()->create([
+                'store_id' => $store->id,
+                'day' => $day,
+                'from' => $request->from[$index] ?? "مغلق",
+                'to' => $request->to[$index] ?? "مغلق",
+            ]);
+        }
         $store_id = $store->id;
         return response()->json(['store_id' => $store_id], 200);
     }
@@ -177,8 +190,23 @@ class StoresController extends Controller
      */
     public function update(UpdateStoreRequest $request, $id)
     {
+
+
+        $store = $this->store->find($id);
         $data = $request->except('_token', '_method', 'store_id');
         $this->store->update($data, $id);
+        $working_dates = WorkingDate::where('store_id', $store->id)->get();
+
+        foreach ($working_dates as $index => $date) {
+            $date->update([
+                'from' => $request->from[$index] ?? "مغلق",
+                'to' => $request->to[$index] ?? "مغلق",
+
+            ]);
+
+        }
+
+
         return response()->json(['store_id' => $id], 200);
 
     }
@@ -200,4 +228,20 @@ class StoresController extends Controller
         return response()->json(['success' => 'تم حذف البيانات بنجاح'], 200);
 
     }//end function
+
+    public function approval(Request $request)
+    {
+        $id = $request->id;
+        $store = $this->store->find($id);
+
+        if ($request->checked == 'true') {
+            $store->update([
+                    'approval' => 1]
+            );
+        } else {
+            $store->update([
+                'approval' => 0
+            ]);
+        }
+    }
 }

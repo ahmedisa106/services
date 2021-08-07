@@ -2,8 +2,8 @@
 
 namespace Modules\StoresModule\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -13,6 +13,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $moduleNamespace = 'Modules\StoresModule\Http\Controllers';
+    protected $api_moduleNamespace = 'Modules\StoresModule\Http\Controllers\Api';
 
     /**
      * Called before routes are registered.
@@ -63,7 +64,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('api')
             ->middleware('api')
-            ->namespace($this->moduleNamespace)
+            ->namespace($this->api_moduleNamespace)
             ->group(module_path('StoresModule', '/Routes/api.php'));
     }
 }

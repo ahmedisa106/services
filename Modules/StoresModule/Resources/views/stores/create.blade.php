@@ -295,6 +295,218 @@
                                         </div>
 
                                     </div>
+                                    <label for="work_from"> تواقيت العمل : </label>
+
+                                    <div class="row">
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_from"> اليوم : </label>
+                                            <select name="day[]" class="form-control" id="">
+                                                <option selected value="السبت">السبت</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> من :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="from[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> إلي :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="to[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_from"> اليوم : </label>
+                                            <select name="day[]" class="form-control" id="">
+                                                <option selected value="الاحد">الاحد</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> من :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="from[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> إلي :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="to[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_from"> اليوم : </label>
+                                            <select name="day[]" class="form-control" id="">
+                                                <option selected value="الاثنين">الاثنين</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> من :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="from[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> إلي :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="to[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_from"> اليوم : </label>
+                                            <select name="day[]" class="form-control" id="">
+                                                <option selected value="الثلاثاء">الثلاثاء</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> من :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="from[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> إلي :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="to[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_from"> اليوم : </label>
+                                            <select name="day[]" class="form-control" id="">
+                                                <option selected value="الاربعاء">الاربعاء</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> من :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="from[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> إلي :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="to[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_from"> اليوم : </label>
+                                            <select name="day[]" class="form-control" id="">
+                                                <option selected value="الخميس">الخميس</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> من :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="from[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> إلي :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="to[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_from"> اليوم : </label>
+                                            <select name="day[]" class="form-control" id="">
+                                                <option selected value="الجمعه">الجمعه</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> من :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="from[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="work_to"> إلي :</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="time" name="to[]" class="form-control input-lg" id="work_to" placeholder="Date Dropper">
+                                                <div class="form-control-position">
+                                                    <i class="ft-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
 
                                     <div class="row">
                                         <div class="col-md-6 form-group">
@@ -302,6 +514,13 @@
                                             <span class="danger">*</span>
                                             <div class="position-relative has-icon-left">
                                                 <input type="checkbox" value="open" name="status" class="switchBootstrap form-control" id="switchBootstrap18" data-on-color="success" data-off-color="danger" checked/></div>
+
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="switchBootstrap18">الموافقه علي أظهار المحل :</label>
+                                            <span class="danger">*</span>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="checkbox" value="1" name="approval" class="switchBootstrap form-control" id="switchBootstrap18" data-on-color="success" data-off-color="danger" checked/></div>
 
                                         </div>
                                     </div>
@@ -439,7 +658,6 @@
                     200: function (response) {
 
 
-                        console.log(response.store_id)
                         $('#stores_form').trigger("reset");
                         var dropzone = 0;
 
@@ -449,6 +667,12 @@
                             store_id = response.store_id;
                             $('#store_id').val(response.store_id);
                             myDropzone.processQueue();
+                        } else {
+                            setTimeout(function () {
+                                var message = 'تم حفظ البيانات بنجاح'
+                                toastr.success(message, '', {positionClass: 'toast-bottom-left'})
+                                window.location.href = '../stores';
+                            }, 200)
                         }
 
 
@@ -509,10 +733,6 @@
             formData.append('store_id', ids);
         });
         myDropzone.on('completemultiple', function () {
-            var message = 'تم حفظ البيانات بنجاح'
-
-            toastr.success(message, '', {positionClass: 'toast-bottom-left'})
-
             setTimeout(function () {
 
                 window.location.href = '../stores';
